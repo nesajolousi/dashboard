@@ -1,0 +1,44 @@
+.welcome-row {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 25px; margin-bottom: 27px;
+}
+
+.eyebrow {
+  color: var(--teal); font-size: 10px; display: flex; align-items: center; gap: 7px; margin-bottom: 8px;
+}
+
+.status-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #1ca894; box-shadow: 0 0 0 4px rgba(28, 168, 148, .12);
+}
+
+.welcome-row h1, .welcome-row h2, .welcome-row p {
+  margin: 0;
+}
+
+.welcome-row h1 {
+  font-size: 25px; color: var(--text-strong); letter-spacing: -.7px; margin-bottom: 7px; font-weight: 700;
+}
+
+.welcome-row p {
+  color: var(--muted); font-size: 11px;
+}
+
+.date-control {
+  display: flex; align-items: center; gap: 9px; color: var(--text); border: 1px solid var(--line); border-radius: 9px; background: var(--surface); height: 39px; padding: 0 12px; font-size: 10px; white-space: nowrap; box-shadow: 0 3px 10px var(--shadow);
+}
+
+.date-control > svg {
+  color: var(--teal);
+}
+
+.date-control button {
+  border: 0; background: transparent; color: var(--muted-2); display: grid; padding: 0 0 0 2px;
+}
+
+.date-control button svg {
+  transform: rotate(90deg);
+}
+
+@media (max-width: 560px) {
+  .welcome-row { display: block; }
+  .date-control { margin-top: 18px; width: max-content; }
+}

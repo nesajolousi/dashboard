@@ -1,0 +1,51 @@
+.alert-panel {
+  padding: 20px 22px;
+}
+
+.alert-count {
+  width: 22px; height: 22px; display: grid; place-items: center; border-radius: 7px; color: var(--coral); background: var(--coral-soft); font-size: 10px; font-weight: 600;
+}
+
+.alert-list {
+  margin-top: 13px;
+}
+
+.alert-item {
+  display: flex; gap: 10px; align-items: center; min-height: 57px; border-top: 1px solid var(--line-soft);
+}
+
+.alert-item:first-child {
+  border-top: 0;
+}
+
+.alert-icon {
+  width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; flex: 0 0 auto;
+}
+
+.warning-alert .alert-icon {
+  background: var(--coral-soft); color: var(--coral);
+}
+
+.info-alert .alert-icon {
+  background: var(--gold-soft); color: var(--gold);
+}
+
+.success-alert .alert-icon {
+  background: var(--teal-soft); color: var(--teal);
+}
+
+.alert-item strong, .alert-item span {
+  display: block;
+}
+
+.alert-item strong {
+  color: var(--text); font-size: 9px;
+}
+
+.alert-item span {
+  color: var(--muted-2); font-size: 8px; margin-top: 4px;
+}
+
+@media (max-width: 560px) {
+  .alert-panel { padding-left: 14px; padding-right: 14px; }
+}

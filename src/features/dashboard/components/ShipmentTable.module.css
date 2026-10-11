@@ -1,0 +1,115 @@
+.shipments-panel {
+  padding: 20px 22px 7px;
+}
+
+.table-scroll {
+  overflow-x: auto; margin-top: 14px;
+}
+
+.shipments-panel table {
+  border-collapse: collapse; width: 100%; min-width: 750px; direction: rtl;
+}
+
+.shipments-panel th {
+  text-align: right; color: var(--muted-2); font-size: 8px; font-weight: 500; background: var(--surface-muted); padding: 10px 11px; white-space: nowrap;
+}
+
+.shipments-panel th:first-child {
+  border-radius: 0 7px 7px 0;
+}
+
+.shipments-panel th:last-child {
+  border-radius: 7px 0 0 7px;
+}
+
+.shipments-panel td {
+  border-bottom: 1px solid var(--line-soft); color: var(--text); font-size: 9px; padding: 11px; white-space: nowrap;
+}
+
+.shipments-panel tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.product-cell {
+  display: flex; align-items: center; gap: 8px; min-width: 135px;
+}
+
+.product-icon {
+  width: 27px; height: 27px; border-radius: 8px; display: grid; place-items: center; color: var(--teal); background: var(--teal-soft);
+}
+
+.product-cell strong, .product-cell span {
+  display: block;
+}
+
+.product-cell strong {
+  color: var(--text); font-size: 9px;
+}
+
+.product-cell span {
+  color: var(--muted-2); font-size: 8px; margin-top: 3px;
+}
+
+.numeric {
+  color: var(--text); font-weight: 600;
+}
+
+.shipment-status {
+  display: inline-flex; align-items: center; gap: 5px; font-size: 8px;
+}
+
+.shipment-status i {
+  width: 5px; height: 5px; border-radius: 50%;
+}
+
+.shipment-status.loading {
+  color: #c98b30;
+}
+
+.shipment-status.loading i {
+  background: #e0a343;
+}
+
+.shipment-status.sent {
+  color: #159689;
+}
+
+.shipment-status.sent i {
+  background: #20a38e;
+}
+
+.shipment-status.waiting {
+  color: var(--muted);
+}
+
+.shipment-status.waiting i {
+  background: #b3c0ca;
+}
+
+.table-progress {
+  width: 88px; display: flex; align-items: center; gap: 7px;
+}
+
+.table-progress span {
+  color: var(--text); font-size: 8px;
+}
+
+.table-progress > div {
+  flex: 1; height: 4px; border-radius: 5px; background: var(--line); overflow: hidden;
+}
+
+.table-progress i {
+  height: 100%; display: block; border-radius: inherit; background: var(--teal);
+}
+
+.date-cell {
+  color: var(--muted-2); font-size: 8px;
+}
+
+.row-more {
+  border: 0; background: transparent; color: var(--muted-2); display: grid; padding: 4px;
+}
+
+@media (max-width: 560px) {
+  .shipments-panel { padding-left: 14px; padding-right: 14px; }
+}

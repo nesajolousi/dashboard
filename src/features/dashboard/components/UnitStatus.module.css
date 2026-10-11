@@ -1,0 +1,107 @@
+.unit-panel {
+  padding: 20px 22px;
+}
+
+.unit-list {
+  margin-top: 16px;
+}
+
+.unit-row {
+  min-height: 57px; border-top: 1px solid var(--line-soft); display: flex; align-items: center; gap: 11px;
+}
+
+.unit-row:first-child {
+  border-top: 0;
+}
+
+.unit-avatar {
+  width: 31px; height: 31px; border-radius: 9px; display: grid; place-items: center; flex: 0 0 auto;
+}
+
+.unit-avatar.refinery {
+  color: var(--blue); background: var(--blue-soft);
+}
+
+.unit-avatar.storage {
+  color: var(--gold); background: var(--gold-soft);
+}
+
+.unit-info {
+  min-width: 120px; flex: 1;
+}
+
+.unit-info strong, .unit-info span {
+  display: block;
+}
+
+.unit-info strong {
+  color: var(--text); font-size: 10px;
+}
+
+.unit-info span {
+  color: var(--muted-2); font-size: 8px; margin-top: 4px;
+}
+
+.unit-progress {
+  width: 27%; min-width: 120px;
+}
+
+.unit-progress > div:first-child {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px;
+}
+
+.unit-progress span {
+  color: var(--text); font-size: 9px; font-weight: 600;
+}
+
+.unit-progress small {
+  color: var(--muted-2); font-size: 8px;
+}
+
+.progress-track, .table-progress > div {
+  height: 5px; border-radius: 5px; background: var(--line); overflow: hidden;
+}
+
+.progress-track i, .table-progress i {
+  height: 100%; display: block; border-radius: inherit; background: #2aa99a;
+}
+
+.unit-row:nth-child(2) .progress-track i {
+  background: #467bd5;
+}
+
+.unit-row:nth-child(3) .progress-track i {
+  background: #db9b3e;
+}
+
+.live-status {
+  font-size: 8px; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;
+}
+
+.live-status i {
+  width: 5px; height: 5px; border-radius: 50%;
+}
+
+.live-status.online {
+  color: #159689;
+}
+
+.live-status.online i {
+  background: #1ca894;
+}
+
+.live-status.warning {
+  color: #c78a32;
+}
+
+.live-status.warning i {
+  background: #e0a142;
+}
+
+@media (max-width: 560px) {
+  .unit-panel { padding-left: 14px; padding-right: 14px; }
+  .unit-row { gap: 7px; }
+  .unit-progress { min-width: 90px; }
+  .live-status { font-size: 0; }
+  .live-status i { width: 7px; height: 7px; }
+}

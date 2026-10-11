@@ -1,0 +1,35 @@
+.panel-heading {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+}
+
+.panel-heading h2 {
+  font-size: 13px; color: var(--text-strong); font-weight: 700; margin-bottom: 5px;
+}
+
+.panel-heading p {
+  color: var(--muted-2); font-size: 9px;
+}
+
+.panel-tools {
+  display: flex; align-items: center; gap: 8px;
+}
+
+.select-control {
+  height: 30px; border: 1px solid var(--line); border-radius: 7px; background: var(--control-bg); color: var(--muted); font-size: 9px; padding: 0 9px; display: flex; align-items: center; gap: 7px;
+}
+
+.select-control svg {
+  transform: rotate(90deg); color: var(--muted-2);
+}
+
+.more-button {
+  padding: 6px;
+}
+
+.view-all {
+  border: 0; background: transparent; color: var(--teal); display: inline-flex; align-items: center; gap: 4px; font-size: 9px; white-space: nowrap;
+}
+
+.view-all svg {
+  transform: rotate(180deg);
+}

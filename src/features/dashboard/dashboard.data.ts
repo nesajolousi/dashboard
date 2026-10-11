@@ -1,0 +1,72 @@
+import type { Kpi, Shipment } from './dashboard.types'
+
+export const kpis: Kpi[] = [
+  {
+    label: 'تولید روزانه',
+    value: '۱۲۸٫۴',
+    unit: 'هزار بشکه',
+    change: '+۴٫۸٪',
+    tone: 'teal',
+    icon: 'factory',
+    caption: 'نسبت به روز گذشته',
+  },
+  {
+    label: 'ارسال به بازار',
+    value: '۹۶٫۲',
+    unit: 'هزار بشکه',
+    change: '+۲٫۱٪',
+    tone: 'blue',
+    icon: 'truck',
+    caption: 'نسبت به روز گذشته',
+  },
+  {
+    label: 'ظرفیت عملیاتی',
+    value: '۸۷٫۶',
+    unit: 'درصد',
+    change: '+۱٫۳٪',
+    tone: 'gold',
+    icon: 'chart',
+    caption: 'از ظرفیت کل',
+  },
+  {
+    label: 'موجودی مخازن',
+    value: '۷۲٫۸',
+    unit: 'درصد',
+    change: '-۳٫۲٪',
+    tone: 'coral',
+    icon: 'tank',
+    caption: 'میانگین کل مخازن',
+  },
+]
+export const shipments: Shipment[] = [
+  {
+    product: 'بنزین یورو ۴',
+    code: 'محموله #۴۸۲۱',
+    destination: 'پایانه شمال',
+    volume: '۲۴٬۰۰۰',
+    status: 'در حال بارگیری',
+    statusClass: 'loading',
+    progress: 72,
+    date: 'امروز، ۱۰:۴۵',
+  },
+  {
+    product: 'گازوئیل',
+    code: 'محموله #۴۸۱۸',
+    destination: 'پایانه شرق',
+    volume: '۱۸٬۵۰۰',
+    status: 'ارسال شده',
+    statusClass: 'sent',
+    progress: 100,
+    date: 'امروز، ۰۹:۱۲',
+  },
+  {
+    product: 'نفت سفید',
+    code: 'محموله #۴۸۱۵',
+    destination: 'انبار مرکزی',
+    volume: '۱۲٬۰۰۰',
+    status: 'در انتظار',
+    statusClass: 'waiting',
+    progress: 28,
+    date: 'امروز، ۰۸:۳۰',
+  },
+]

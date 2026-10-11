@@ -1,0 +1,78 @@
+.kpi-card {
+  min-height: 158px; border-radius: 13px; border: 1px solid var(--line); background: var(--surface); padding: 17px 17px 15px; box-shadow: 0 5px 18px var(--shadow); position: relative; overflow: hidden;
+}
+
+.kpi-card::after {
+  content: ''; position: absolute; width: 110px; height: 110px; border-radius: 50%; left: -57px; bottom: -68px; background: var(--kpi-tint); opacity: .45;
+}
+
+.kpi-card.teal {
+  --kpi-color: var(--teal); --kpi-tint: var(--teal-soft);
+}
+
+.kpi-card.blue {
+  --kpi-color: var(--blue); --kpi-tint: var(--blue-soft);
+}
+
+.kpi-card.gold {
+  --kpi-color: var(--gold); --kpi-tint: var(--gold-soft);
+}
+
+.kpi-card.coral {
+  --kpi-color: var(--coral); --kpi-tint: var(--coral-soft);
+}
+
+.kpi-top {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; position: relative; z-index: 1;
+}
+
+.kpi-icon {
+  width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; color: var(--kpi-color); background: var(--kpi-tint);
+}
+
+.kpi-top button {
+  border: 0; background: transparent; color: var(--muted-2); display: grid; padding: 3px;
+}
+
+.kpi-label {
+  color: var(--muted); font-size: 10px; margin-bottom: 5px; position: relative; z-index: 1;
+}
+
+.kpi-value {
+  color: var(--text-strong); font-size: 26px; font-weight: 700; letter-spacing: -.7px; direction: rtl; position: relative; z-index: 1;
+}
+
+.kpi-value small {
+  font-size: 10px; font-weight: 400; color: var(--muted-2); margin-right: 6px; letter-spacing: 0;
+}
+
+.kpi-footer {
+  display: flex; align-items: center; gap: 8px; margin-top: 13px; color: var(--muted-2); font-size: 9px; position: relative; z-index: 1;
+}
+
+.change {
+  display: inline-flex; align-items: center; gap: 2px; font-size: 10px; font-weight: 600;
+}
+
+.change.positive {
+  color: var(--teal);
+}
+
+.change.negative {
+  color: var(--coral);
+}
+
+.change.positive svg {
+  stroke-width: 2.4;
+}
+
+.kpi-card.coral .change {
+  color: var(--coral);
+}
+
+@media (max-width: 560px) {
+  .kpi-card { min-height: 145px; padding: 13px; }
+  .kpi-value { font-size: 22px; }
+  .kpi-footer { display: block; }
+  .kpi-footer > span:last-child { display: block; margin-top: 4px; }
+}
