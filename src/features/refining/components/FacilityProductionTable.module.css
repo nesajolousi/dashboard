@@ -1,0 +1,13 @@
+.panel { padding: 21px 22px 17px; }
+.tableWrap { overflow-x: auto; margin-top: 22px; }
+.tableWrap:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+.table { width: 100%; min-width: 880px; border-collapse: collapse; text-align: start; font-size: 11px; color: var(--text); }
+.table thead th { padding: 10px 8px 14px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 10px; font-weight: 500; white-space: nowrap; }
+.table td, .table tbody th { padding: 15px 8px; border-bottom: 1px solid var(--line-soft); white-space: nowrap; }
+.table tbody tr:last-child td, .table tbody tr:last-child th { border-bottom: 0; }
+.name { min-width: 180px; color: var(--text-strong); font-size: 11px; font-weight: 500; }
+.type { display: inline-flex; padding: 5px 8px; border-radius: 6px; font-size: 9px; }
+.refinery { background: var(--teal-soft); color: var(--teal); }
+.storage { background: var(--blue-soft); color: var(--blue); }
+.note { margin: 13px 0 0; color: var(--muted); font-size: 10px; line-height: 1.8; }
+@media (max-width: 560px) { .panel { padding-inline: 14px; } }

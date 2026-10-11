@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
+import { navigationLabels } from '../config/navigation'
 
 export type Theme = 'light' | 'dark'
 
@@ -20,7 +21,7 @@ type AppContextValue = {
 
 const AppContext = createContext<AppContextValue | undefined>(undefined)
 
-const initialActiveNav = '\u0646\u0645\u0627\u06cc \u06a9\u0644\u06cc'
+const initialActiveNav: string = navigationLabels.overview
 const initialProductionRange = '\u0647\u0641\u062a \u0631\u0648\u0632 \u06af\u0630\u0634\u062a\u0647'
 const alternateProductionRange = '\u0633\u06cc \u0631\u0648\u0632 \u06af\u0630\u0634\u062a\u0647'
 

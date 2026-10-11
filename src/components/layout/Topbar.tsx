@@ -37,7 +37,7 @@ export function Topbar() {
         <Icon name="menu" size={21} />
       </button>
       <div className={styles["breadcrumb"]}>
-        <span>داشبورد</span>
+        <span>سامانه پایش</span>
         <Icon name="chevron" size={14} />
         <strong>{activeNav}</strong>
       </div>
