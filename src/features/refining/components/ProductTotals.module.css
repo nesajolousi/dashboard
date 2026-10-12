@@ -1,4 +1,4 @@
-.groups { display: grid; grid-template-columns: minmax(270px, .86fr) minmax(0, 1.4fr); gap: 17px; margin-bottom: 17px; }
+.groups { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) minmax(0, 3fr); gap: 17px; margin-bottom: 17px; }
 .group { min-width: 0; padding: 17px; border: 1px solid var(--line); border-radius: 13px; background: var(--surface); box-shadow: 0 5px 18px var(--shadow); }
 .groupHeading { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
 .groupIcon { display: grid; place-items: center; flex: 0 0 auto; width: 34px; height: 34px; border-radius: 10px; background: var(--surface-muted); color: var(--teal); }
@@ -17,6 +17,18 @@
 .value { display: block; color: var(--text-strong); font-size: 25px; letter-spacing: -.3px; }
 .unit { display: block; margin-top: 7px; color: var(--muted-2); font-size: 9px; }
 
+.ratios { min-width: 0; padding: 17px; border: 1px solid var(--line); border-radius: 13px; background: var(--surface); box-shadow: 0 5px 18px var(--shadow); }
+.ratioHeading { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+.ratioHeading h2 { margin: 0 0 3px; color: var(--text-strong); font-size: 13px; }
+.ratioHeading p { margin: 0; color: var(--muted); font-size: 9px; }
+.ratioCards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.ratioCard { min-width: 0; padding: 13px; border: 1px solid var(--line-soft); border-radius: 10px; background: var(--surface-muted); }
+.ratioCard h3 { margin: 0 0 9px; color: var(--muted); font-size: 11px; font-weight: 500; line-height: 1.7; }
+.ratioCard p { margin: 8px 0 0; color: var(--muted-2); font-size: 9px; line-height: 1.7; }
+.ratioValue { display: flex; align-items: baseline; gap: 5px; }
+.ratioValue strong { color: var(--text-strong); font-size: 25px; letter-spacing: -.3px; }
+.ratioValue span { color: var(--muted); font-size: 10px; }
+
 @media (max-width: 1120px) {
   .groups { grid-template-columns: 1fr; }
 }
@@ -24,8 +36,9 @@
 @media (max-width: 560px) {
   .group { padding: 14px; }
   .outputs .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ratios { padding: 14px; }
 }
 
 @media (max-width: 380px) {
-  .cards, .outputs .cards { grid-template-columns: 1fr; }
+  .cards, .outputs .cards, .ratioCards { grid-template-columns: 1fr; }
 }

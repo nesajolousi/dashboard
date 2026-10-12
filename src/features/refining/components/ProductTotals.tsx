@@ -1,10 +1,13 @@
 import { Icon, type IconName } from '../../../components/ui/Icon'
-import type { ProductKey, RefiningProductionResponse } from '../refining.types'
+import { formatPersianNumber } from '../../../shared/lib/number'
+import { selectProductionRatios } from '../model/refining.selectors'
+import type { ProductKey, RefiningProductionResponse } from '../model/refining.types'
 import styles from './ProductTotals.module.css'
 
 type ProductTotalsProps = { data: RefiningProductionResponse }
 type ProductTone = 'teal' | 'blue' | 'gold' | 'coral' | 'purple'
 type ProductDefinition = { key: ProductKey; label: string; icon: IconName; tone: ProductTone }
+type ProductionRatio = { label: string; value: number | null; caption: string; icon: IconName; tone: ProductTone }
 
 const inputProducts: ProductDefinition[] = [
   { key: 'crudeOil', label: 'نفت خام', icon: 'tank', tone: 'coral' },
@@ -18,18 +21,38 @@ const outputProducts: ProductDefinition[] = [
 ]
 
 function formatQuantity(value: string) {
-  const parsed = Number(value || 0)
-  if (!Number.isFinite(parsed)) return '۰٫۰۰۰'
-
-  return new Intl.NumberFormat('fa-IR', {
+  return formatPersianNumber(value, {
     minimumFractionDigits: 3,
     maximumFractionDigits: 3,
-  }).format(parsed)
+  })
+}
+
+function getProductionRatios(data: RefiningProductionResponse): ProductionRatio[] {
+  const { convertRate, fuelOilRate } = selectProductionRatios(data)
+
+  return [
+    {
+      label: 'نرخ تبدیل خوراک به فرآورده اصلی',
+      value: convertRate,
+      caption: 'فرآورده‌های اصلی تولیدی نسبت به خوراک دریافتی',
+      icon: 'chart',
+      tone: 'teal',
+    },
+    {
+      label: 'نسبت نفت کوره به کل تولید (فرآورده اصلی)',
+      value: fuelOilRate,
+      caption: 'نفت کوره تولیدی نسبت به کل فرآورده‌های اصلی',
+      icon: 'tank',
+      tone: 'gold',
+    },
+  ]
 }
 
 export function ProductTotals({ data }: ProductTotalsProps) {
+  const ratios = getProductionRatios(data)
+
   return (
-    <div className={styles.groups} aria-label="مجموع ورود و خروج فرآورده‌های نفتی">
+    <div className={styles.groups} aria-label="مجموع ورود و خروج فرآورده‌های نفتی و شاخص‌های کل تولید">
       <ProductGroup
         title="مجموع ورودی‌ها"
         description="خوراک ورودی پالایشگاه‌ها"
@@ -46,6 +69,30 @@ export function ProductTotals({ data }: ProductTotalsProps) {
         className={styles.outputs}
         icon="truck"
       />
+      <section className={styles.ratios} aria-label="شاخص‌های کل تولید">
+        <div className={styles.ratioHeading}>
+          <div className={styles.groupIcon}>
+            <Icon name="chart" size={18} />
+          </div>
+          <div>
+            <h2>شاخص‌های کل تولید</h2>
+            <p>محاسبه‌شده بر اساس مجموع ورودی و خروجی پالایشگاه‌ها</p>
+          </div>
+        </div>
+        <div className={styles.ratioCards}>
+          {ratios.map((ratio) => (
+            <article key={ratio.label} className={`${styles.ratioCard} ${styles[ratio.tone]}`}>
+              <div className={styles.icon}><Icon name={ratio.icon} size={19} /></div>
+              <h3>{ratio.label}</h3>
+              <div className={styles.ratioValue}>
+                <strong>{ratio.value === null ? '—' : formatPersianNumber(ratio.value, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</strong>
+                <span>درصد</span>
+              </div>
+              <p>{ratio.caption}</p>
+            </article>
+          ))}
+        </div>
+      </section>
     </div>
   )
 }

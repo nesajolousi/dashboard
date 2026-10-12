@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Icon } from '../../../components/ui/Icon'
-import type { ProductionDateRange } from '../refining.types'
+import type { ProductionDateRange } from '../model/refining.types'
 import styles from './PersianDateRangePicker.module.css'
 
 type PersianDateRangePickerProps = {

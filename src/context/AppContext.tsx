@@ -1,16 +1,16 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
-import { navigationLabels } from '../config/navigation'
+import { navigationLabels, type NavigationLabel } from '../config/navigation'
 
 export type Theme = 'light' | 'dark'
 
 type AppContextValue = {
-  activeNav: string
+  activeNav: NavigationLabel
   menuOpen: boolean
   sidebarCollapsed: boolean
   theme: Theme
   showNotifications: boolean
   productionRange: string
-  selectNav: (label: string) => void
+  selectNav: (label: NavigationLabel) => void
   openMenu: () => void
   closeMenu: () => void
   toggleSidebar: () => void
@@ -21,7 +21,7 @@ type AppContextValue = {
 
 const AppContext = createContext<AppContextValue | undefined>(undefined)
 
-const initialActiveNav: string = navigationLabels.overview
+const initialActiveNav: NavigationLabel = navigationLabels.overview
 const initialProductionRange = '\u0647\u0641\u062a \u0631\u0648\u0632 \u06af\u0630\u0634\u062a\u0647'
 const alternateProductionRange = '\u0633\u06cc \u0631\u0648\u0632 \u06af\u0630\u0634\u062a\u0647'
 

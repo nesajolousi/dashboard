@@ -3,7 +3,7 @@ import type {
   ProductionUnit,
   RefiningMetric,
   RefiningProductionResponse,
-} from './refining.types'
+} from './model/refining.types'
 
 // Sample values for the initial page; replace these with API data when available.
 export const refiningMetrics: RefiningMetric[] = [

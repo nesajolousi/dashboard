@@ -10,7 +10,10 @@ export const navigationLabels = {
   settings: 'تنظیمات',
 } as const
 
-export const navigationItems: { label: string; icon: IconName }[] = [
+export type NavigationLabel = typeof navigationLabels[keyof typeof navigationLabels]
+export type NavigationItem = { label: NavigationLabel; icon: IconName }
+
+export const navigationItems: NavigationItem[] = [
   { label: navigationLabels.overview, icon: 'grid' },
   { label: navigationLabels.refining, icon: 'factory' },
   { label: navigationLabels.distribution, icon: 'truck' },
