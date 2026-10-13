@@ -151,6 +151,69 @@
   box-shadow: 0 0 0 4px rgba(43, 182, 164, 0.12);
 }
 
+.sub-nav {
+  margin: 4px 15px 8px 0;
+  padding-right: 8px;
+  border-right: 1px solid rgba(145, 172, 197, 0.2);
+}
+
+.sub-nav-item {
+  min-height: 38px;
+  gap: 8px;
+  padding-inline: 8px;
+}
+
+.sub-nav-item span:not(.nav-pulse) {
+  font-size: 10px;
+}
+
+.nav-item:focus-visible {
+  outline: 2px solid #26b7a5;
+  outline-offset: 2px;
+}
+
+.nav-group-row {
+  display: flex;
+  align-items: stretch;
+  gap: 3px;
+}
+
+.nav-group-row > .nav-item {
+  flex: 1;
+  min-width: 0;
+}
+
+.nav-group-toggle {
+  display: grid;
+  flex: 0 0 30px;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #71879b;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-group-toggle:hover,
+.nav-group-toggle:focus-visible {
+  background: rgba(255, 255, 255, 0.05);
+  color: #f5fbff;
+}
+
+.nav-group-toggle:focus-visible {
+  outline: 2px solid #26b7a5;
+  outline-offset: 2px;
+}
+
+.nav-group-toggle svg {
+  transform: rotate(90deg);
+  transition: transform 0.2s ease;
+}
+
+.nav-group-toggle.is-open svg {
+  transform: rotate(-90deg);
+}
+
 .sidebar-bottom {
   margin-top: auto;
 }

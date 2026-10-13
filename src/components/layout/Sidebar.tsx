@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Icon } from "../ui/Icon";
 import { useAppContext } from "../../context/AppContext";
 import { navigationItems, navigationLabels } from "../../config/navigation";
@@ -7,6 +8,7 @@ import styles from "./Sidebar.module.css";
 export function Sidebar() {
   const { activeNav, menuOpen, sidebarCollapsed, selectNav, closeMenu } =
     useAppContext();
+  const [refiningOpen, setRefiningOpen] = useState(true);
   return (
     <aside
       className={`${styles["sidebar"]} ${menuOpen ? styles["is-open"] : ""} ${sidebarCollapsed ? styles["is-collapsed"] : ""}`}
@@ -29,23 +31,61 @@ export function Sidebar() {
       </div>
       <div className={styles["side-label"]}>داشبورد</div>
       <nav className={styles["main-nav"]} aria-label="منوی اصلی">
-        {navigationItems.map((item) => (
-          <button
-            key={item.label}
-            className={`${styles["nav-item"]} ${activeNav === item.label ? styles["active"] : ""}`}
-            aria-current={activeNav === item.label ? "page" : undefined}
-            onClick={() => {
-              selectNav(item.label);
-              closeMenu();
-            }}
-          >
-            <Icon name={item.icon} size={19} />
-            <span>{item.label}</span>
-            {item.label === navigationLabels.overview && (
-              <span className={styles["nav-pulse"]} />
+        {navigationItems.map((item) => {
+          const sectionActive = activeNav === item.label || item.children?.some((child) => child.label === activeNav);
+          const isRefiningGroup = item.label === navigationLabels.refining && Boolean(item.children);
+          const groupOpen = isRefiningGroup ? refiningOpen : sectionActive;
+          return (
+          <div key={item.label} className={item.children ? styles["nav-group"] : undefined}>
+          <div className={item.children ? styles["nav-group-row"] : undefined}>
+            <button
+              className={`${styles["nav-item"]} ${sectionActive ? styles["active"] : ""}`}
+              aria-current={activeNav === item.label ? "page" : undefined}
+              onClick={() => {
+                selectNav(item.label);
+                if (isRefiningGroup) setRefiningOpen(true);
+                closeMenu();
+              }}
+            >
+              <Icon name={item.icon} size={19} />
+              <span>{item.label}</span>
+              {item.label === navigationLabels.overview && (
+                <span className={styles["nav-pulse"]} />
+              )}
+            </button>
+            {item.children && (
+              <button
+                type="button"
+                className={`${styles["nav-group-toggle"]} ${groupOpen ? styles["is-open"] : ""}`}
+                aria-label={`${groupOpen ? "بستن" : "باز کردن"} زیرصفحه‌های ${item.label}`}
+                aria-expanded={groupOpen}
+                onClick={() => setRefiningOpen((open) => !open)}
+              >
+                <Icon name="chevron" size={14} />
+              </button>
             )}
-          </button>
-        ))}
+          </div>
+          {item.children && groupOpen && (
+            <div className={styles["sub-nav"]} role="group" aria-label={`زیرصفحه‌های ${item.label}`}>
+              {item.children.map((child) => (
+                <button
+                  key={child.label}
+                  className={`${styles["nav-item"]} ${styles["sub-nav-item"]} ${activeNav === child.label ? styles["active"] : ""}`}
+                  aria-current={activeNav === child.label ? "page" : undefined}
+                  onClick={() => {
+                    selectNav(child.label);
+                    closeMenu();
+                  }}
+                >
+                  <Icon name={child.icon} size={16} />
+                  <span>{child.label}</span>
+                </button>
+              ))}
+            </div>
+          )}
+          </div>
+          );
+        })}
       </nav>
       <div className={`${styles["side-label"]} ${styles["side-label-spaced"]}`}>
         سایر

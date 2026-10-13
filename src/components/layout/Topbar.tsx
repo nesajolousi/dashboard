@@ -1,4 +1,5 @@
 import { useAppContext } from "../../context/AppContext";
+import { navigationItems } from "../../config/navigation";
 import { Icon } from "../ui/Icon";
 import sharedStyles from "../../styles/shared.module.css";
 import styles from "./Topbar.module.css";
@@ -14,6 +15,7 @@ export function Topbar() {
     toggleTheme,
     toggleNotifications,
   } = useAppContext();
+  const parentPage = navigationItems.find((item) => item.children?.some((child) => child.label === activeNav));
 
   return (
     <header className={styles["topbar"]}>
@@ -39,6 +41,12 @@ export function Topbar() {
       <div className={styles["breadcrumb"]}>
         <span>سامانه پایش</span>
         <Icon name="chevron" size={14} />
+        {parentPage && (
+          <>
+            <span>{parentPage.label}</span>
+            <Icon name="chevron" size={14} />
+          </>
+        )}
         <strong>{activeNav}</strong>
       </div>
       <div className={styles["topbar-actions"]}>

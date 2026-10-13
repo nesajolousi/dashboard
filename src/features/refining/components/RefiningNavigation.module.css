@@ -1,0 +1,29 @@
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.item:hover, .active {
+  background: var(--teal-soft);
+  color: var(--teal);
+}
+
+.active { font-weight: 600; }
+.item:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }

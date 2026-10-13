@@ -1,0 +1,60 @@
+.selectorPanel { padding: 21px 22px; margin-bottom: 21px; }
+.selectorRow { display: flex; align-items: flex-end; gap: 16px; margin-top: 18px; }
+.selector { display: grid; gap: 7px; width: min(430px, 100%); color: var(--muted); font-size: 10px; }
+.selector select { min-height: 42px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); color: var(--text); font: inherit; font-size: 11px; cursor: pointer; }
+.selector select:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+.detailPanel { padding: 24px 22px 20px; }
+.detailHeader { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; }
+.detailEyebrow { display: flex; align-items: center; gap: 7px; color: var(--teal); font-size: 10px; }
+.detailHeader h2 { margin: 8px 0 5px; color: var(--text-strong); font-size: 20px; }
+.detailHeader p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.9; }
+.status { display: inline-flex; flex: 0 0 auto; padding: 6px 10px; border-radius: 7px; font-size: 10px; white-space: nowrap; }
+.status.operating { background: var(--teal-soft); color: var(--teal); }
+.status.watch { background: var(--gold-soft); color: var(--gold); }
+.status.unknown { background: var(--surface-muted); color: var(--muted); }
+.metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 13px; margin-top: 24px; }
+.metricCard { min-width: 0; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-muted); }
+.metricIcon { display: grid; place-items: center; width: 35px; height: 35px; margin-bottom: 12px; border-radius: 9px; }
+.metricIcon.teal { background: var(--teal-soft); color: var(--teal); }
+.metricIcon.blue { background: var(--blue-soft); color: var(--blue); }
+.metricIcon.gold { background: var(--gold-soft); color: var(--gold); }
+.metricIcon.coral { background: var(--coral-soft); color: var(--coral); }
+.metricCard > span { display: block; color: var(--muted); font-size: 10px; }
+.metricCard > strong { display: block; margin: 9px 0 5px; color: var(--text-strong); font-size: 22px; font-variant-numeric: tabular-nums; }
+.metricCard > p { margin: 0; color: var(--muted-2); font-size: 9px; line-height: 1.8; }
+.consumptionPanel { margin-top: 18px; padding: 19px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-muted); }
+.consumptionHeading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.consumptionHeading h3 { margin: 0 0 5px; color: var(--text-strong); font-size: 13px; }
+.consumptionHeading p { margin: 0; color: var(--muted); font-size: 10px; }
+.consumptionHeading > strong { color: var(--text-strong); font-size: 17px; font-variant-numeric: tabular-nums; }
+.progressTrack { height: 10px; margin-top: 18px; overflow: hidden; border-radius: 5px; background: var(--line); }
+.progress { display: block; height: 100%; border-radius: inherit; transition: width .2s ease; }
+.progress.operating { background: var(--teal); }
+.progress.watch { background: var(--gold); }
+.progress.unknown { background: var(--muted-2); }
+.consumptionMeta { display: flex; justify-content: space-between; gap: 14px; margin-top: 11px; color: var(--muted); font-size: 9px; line-height: 1.8; }
+.consumptionMeta strong { color: var(--text); font-weight: 500; }
+.note { margin: 15px 0 0; color: var(--muted); font-size: 10px; line-height: 1.9; }
+.empty { display: flex; flex-direction: column; align-items: center; padding: 48px 20px; color: var(--muted); text-align: center; }
+.empty > svg { color: var(--teal); }
+.empty h2 { margin: 16px 0 8px; color: var(--text-strong); font-size: 16px; }
+.empty p { margin: 0; font-size: 11px; line-height: 1.9; }
+
+@media (max-width: 1120px) {
+  .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .selectorPanel, .detailPanel { padding: 18px 14px; }
+  .selectorRow { flex-direction: column; align-items: stretch; gap: 12px; }
+  .selector { width: 100%; }
+  .detailHeader { flex-direction: column; gap: 12px; }
+  .metrics { grid-template-columns: 1fr; gap: 10px; }
+  .metricCard { padding: 14px; }
+  .consumptionPanel { padding: 15px; }
+  .consumptionMeta { flex-direction: column; gap: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress { transition: none; }
+}

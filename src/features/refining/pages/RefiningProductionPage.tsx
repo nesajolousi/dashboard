@@ -5,23 +5,10 @@ import { navigationLabels } from '../../../config/navigation'
 import { FacilityProductionCards } from '../components/FacilityProductionCards'
 import { PersianDateRangePicker } from '../components/PersianDateRangePicker'
 import { ProductTotals } from '../components/ProductTotals'
+import { RefiningNavigation } from '../components/RefiningNavigation'
 import { useRefiningProduction } from '../api/useRefiningProduction'
-import type { ProductionDateRange } from '../model/refining.types'
+import { getInitialDateRange } from '../model/refining.dates'
 import styles from './RefiningProductionPage.module.css'
-
-function toIsoDate(date: Date) {
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const day = String(date.getDate()).padStart(2, '0')
-  return `${year}-${month}-${day}`
-}
-
-function getInitialDateRange(): ProductionDateRange {
-  const to = new Date()
-  const from = new Date(to)
-  from.setDate(from.getDate() - 29)
-  return { from: toIsoDate(from), to: toIsoDate(to) }
-}
 
 export function RefiningProductionPage() {
   const [dateRange, setDateRange] = useState(getInitialDateRange)
@@ -39,6 +26,8 @@ export function RefiningProductionPage() {
         </div>
         <PersianDateRangePicker value={dateRange} onChange={setDateRange} />
       </header>
+
+      <RefiningNavigation />
 
       <div className={`${styles.dataStatus} ${state.source === 'backend' ? styles.live : styles.sample}`} aria-live="polite">
         <span className={styles.statusDot} />

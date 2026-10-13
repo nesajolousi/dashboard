@@ -42,6 +42,9 @@ export type RefiningProductionCard = {
   gasCondensate: string
   fuelOilRate: number | null
   convertRate: number | null
+  /** Optional fields returned by feed-delivery APIs when available. */
+  feedDelivered?: string | number | null
+  feedConsumed?: string | number | null
 }
 
 export type RefiningProductionResponse = {
