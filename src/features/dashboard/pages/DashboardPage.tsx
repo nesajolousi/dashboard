@@ -1,3 +1,4 @@
+
 import { Footer } from "../../../components/layout/Footer";
 import { AlertsPanel } from "../components/AlertsPanel";
 import { KpiGrid } from "../components/KpiGrid";
@@ -12,17 +13,42 @@ import styles from "./DashboardPage.module.css";
 export function DashboardPage() {
   return (
     <div className={styles["page-content"]}>
+      {/* هدر جمع‌وجور داشبورد */}
       <PageHeader />
-      <KpiGrid items={kpis} />
-      <section className={styles["main-grid"]}>
-        <ProductionTrend />
-        <ProductMix />
+
+      {/* ردیف اول: کارت‌های شاخص کلیدی */}
+      <section className={styles["kpi-section"]}>
+        <KpiGrid items={kpis} />
       </section>
-      <section className={styles["lower-grid"]}>
-        <UnitStatus />
-        <AlertsPanel />
+
+      {/* ردیف دوم: روند تولید و وضعیت واحدها */}
+      <section className={styles["operations-grid"]}>
+        <div className={styles["production-panel"]}>
+          <ProductionTrend />
+        </div>
+
+        <div className={styles["unit-status-panel"]}>
+          <UnitStatus />
+        </div>
       </section>
-      <ShipmentTable rows={shipments} />
+
+      {/* ردیف سوم: سبد تولید و هشدارها */}
+      <section className={styles["insights-grid"]}>
+        <div className={styles["product-mix-panel"]}>
+          <ProductMix />
+        </div>
+
+        <div className={styles["alerts-panel"]}>
+          <AlertsPanel />
+        </div>
+      </section>
+
+      {/* ردیف چهارم: آخرین محموله‌ها در تمام عرض صفحه */}
+      <section className={styles["shipments-section"]}>
+        <ShipmentTable rows={shipments} />
+      </section>
+
+      {/* پابرگ داشبورد */}
       <Footer />
     </div>
   );

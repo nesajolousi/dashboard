@@ -1,14 +1,19 @@
+
 import { KpiCard } from './KpiCard'
-import type { Kpi } from '../dashboard.types'
 import styles from './KpiGrid.module.css'
 
-type KpiGridProps = { items: Kpi[] }
-
-export function KpiGrid({ items }: KpiGridProps) {
+// نمایش کارت‌های شاخص کلیدی داشبورد
+export function KpiGrid({ items }) {
   return (
-    <section className={styles['kpi-grid']} aria-label="شاخص‌های کلیدی">
+    <section
+      className={styles['kpi-grid']}
+      aria-label="شاخص‌های کلیدی"
+    >
       {items.map((kpi) => (
-        <KpiCard key={kpi.label} kpi={kpi} />
+        <KpiCard
+          key={kpi.label}
+          kpi={kpi}
+        />
       ))}
     </section>
   )

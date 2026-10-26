@@ -1,17 +1,38 @@
+/* پنل آخرین محموله‌ها */
 .shipments-panel {
-  padding: 20px 22px 7px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 14px 18px 6px;
 }
 
+/* پیمایش جدول */
 .table-scroll {
-  overflow-x: auto; margin-top: 14px;
+  width: 100%;
+  min-width: 0;
+  margin-top: 10px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
 }
 
+/* ساختار جدول */
 .shipments-panel table {
-  border-collapse: collapse; width: 100%; min-width: 750px; direction: rtl;
+  width: 100%;
+  min-width: 750px;
+  border-collapse: collapse;
+  direction: rtl;
 }
 
+/* سرستون‌ها */
 .shipments-panel th {
-  text-align: right; color: var(--muted-2); font-size: 8px; font-weight: 500; background: var(--surface-muted); padding: 10px 11px; white-space: nowrap;
+  padding: 9px 11px;
+  color: var(--muted-2);
+  background: var(--surface-muted);
+  font-size: 9px;
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
 }
 
 .shipments-panel th:first-child {
@@ -22,44 +43,74 @@
   border-radius: 7px 0 0 7px;
 }
 
+/* سلول‌های جدول */
 .shipments-panel td {
-  border-bottom: 1px solid var(--line-soft); color: var(--text); font-size: 9px; padding: 11px; white-space: nowrap;
+  padding: 9px 11px;
+  color: var(--text);
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 9px;
+  white-space: nowrap;
 }
 
 .shipments-panel tbody tr:last-child td {
   border-bottom: 0;
 }
 
+/* اطلاعات محصول */
 .product-cell {
-  display: flex; align-items: center; gap: 8px; min-width: 135px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 135px;
 }
 
 .product-icon {
-  width: 27px; height: 27px; border-radius: 8px; display: grid; place-items: center; color: var(--teal); background: var(--teal-soft);
+  display: grid;
+  flex: 0 0 27px;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  color: var(--teal);
+  background: var(--teal-soft);
+  border-radius: 8px;
 }
 
-.product-cell strong, .product-cell span {
+.product-cell strong,
+.product-cell span {
   display: block;
 }
 
 .product-cell strong {
-  color: var(--text); font-size: 9px;
+  color: var(--text);
+  font-size: 9px;
 }
 
 .product-cell span {
-  color: var(--muted-2); font-size: 8px; margin-top: 3px;
+  margin-top: 3px;
+  color: var(--muted-2);
+  font-size: 8px;
 }
 
+/* حجم محموله */
 .numeric {
-  color: var(--text); font-weight: 600;
+  color: var(--text);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
 }
 
+/* وضعیت محموله */
 .shipment-status {
-  display: inline-flex; align-items: center; gap: 5px; font-size: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 8px;
 }
 
 .shipment-status i {
-  width: 5px; height: 5px; border-radius: 50%;
+  flex: 0 0 5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
 }
 
 .shipment-status.loading {
@@ -86,30 +137,70 @@
   background: #b3c0ca;
 }
 
+/* نوار پیشرفت محموله */
 .table-progress {
-  width: 88px; display: flex; align-items: center; gap: 7px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 88px;
 }
 
 .table-progress span {
-  color: var(--text); font-size: 8px;
+  color: var(--text);
+  font-size: 8px;
+  font-variant-numeric: tabular-nums;
 }
 
-.table-progress > div {
-  flex: 1; height: 4px; border-radius: 5px; background: var(--line); overflow: hidden;
+.table-progress>div {
+  flex: 1;
+  height: 4px;
+  overflow: hidden;
+  background: var(--line);
+  border-radius: 5px;
 }
 
 .table-progress i {
-  height: 100%; display: block; border-radius: inherit; background: var(--teal);
+  display: block;
+  height: 100%;
+  background: var(--teal);
+  border-radius: inherit;
 }
 
+/* تاریخ بروزرسانی */
 .date-cell {
-  color: var(--muted-2); font-size: 8px;
+  color: var(--muted-2);
+  font-size: 8px;
 }
 
+/* دکمه گزینه‌های هر ردیف */
 .row-more {
-  border: 0; background: transparent; color: var(--muted-2); display: grid; padding: 4px;
+  display: grid;
+  place-items: center;
+  padding: 4px;
+  color: var(--muted-2);
+  background: transparent;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
+.row-more:hover {
+  color: var(--teal);
+  background: var(--teal-soft);
+}
+
+/* موبایل */
 @media (max-width: 560px) {
-  .shipments-panel { padding-left: 14px; padding-right: 14px; }
+  .shipments-panel {
+    padding: 12px 10px 6px;
+  }
+
+  .table-scroll {
+    margin-top: 8px;
+  }
+
+  .shipments-panel th,
+  .shipments-panel td {
+    padding: 9px;
+  }
 }

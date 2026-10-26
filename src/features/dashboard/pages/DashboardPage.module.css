@@ -1,40 +1,144 @@
-page-content {
+/* ========================================
+   چیدمان اصلی داشبورد
+   ======================================== */
+
+.page-content {
+  width: 100%;
   max-width: 1530px;
   margin: 0 auto;
-  padding: 34px 36px 30px;
+  padding: 10px 16px 8px;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
-.main-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.72fr) minmax(280px, 0.88fr);
-  gap: 17px;
-  margin-bottom: 17px;
+/* ========================================
+   ردیف اول: کارت‌های شاخص کلیدی
+   ======================================== */
+
+.kpi-section {
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 8px;
 }
 
-.lower-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.72fr) minmax(280px, 0.88fr);
-  gap: 17px;
-  margin-bottom: 17px;
+.kpi-section>* {
+  width: 100%;
+  min-width: 0;
 }
+
+/* ========================================
+   ردیف دوم: روند تولید و وضعیت واحدها
+   هر پنل نصف عرض ردیف را می‌گیرد
+   ======================================== */
+
+.operations-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  align-items: stretch;
+  margin-bottom: 8px;
+  min-width: 0;
+}
+
+.operations-grid>* {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+/* پنل‌های ردیف دوم */
+.production-panel,
+.unit-status-panel {
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   ردیف سوم: سبد تولید و هشدارها
+   ======================================== */
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  align-items: stretch;
+  margin-bottom: 8px;
+  min-width: 0;
+}
+
+.insights-grid>* {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+/* پنل‌های ردیف سوم */
+.product-mix-panel,
+.alerts-panel {
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   ردیف چهارم: آخرین محموله‌ها
+   تمام عرض داشبورد
+   ======================================== */
+
+.shipments-section {
+  width: 100%;
+  min-width: 0;
+  margin-bottom: 4px;
+  box-sizing: border-box;
+}
+
+.shipments-section>* {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* ========================================
+   لپ‌تاپ و نمایشگر متوسط
+   ======================================== */
 
 @media (max-width: 1120px) {
   .page-content {
-    padding-left: 24px;
-    padding-right: 24px;
+    padding: 8px 10px;
   }
-  .main-grid,
-  .lower-grid {
-    grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.95fr);
+
+  .kpi-section,
+  .operations-grid,
+  .insights-grid {
+    margin-bottom: 7px;
+  }
+
+  .operations-grid,
+  .insights-grid {
+    gap: 7px;
   }
 }
 
+/* ========================================
+   موبایل و صفحه‌های باریک
+   ======================================== */
+
 @media (max-width: 820px) {
   .page-content {
-    padding: 26px 18px;
+    padding: 8px;
   }
-  .main-grid,
-  .lower-grid {
-    grid-template-columns: 1fr;
+
+  .operations-grid,
+  .insights-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .kpi-section,
+  .operations-grid,
+  .insights-grid {
+    margin-bottom: 8px;
   }
 }

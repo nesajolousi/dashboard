@@ -1,17 +1,39 @@
+/* پنل روند تولید و ارسال */
 .production-panel {
-  padding: 21px 22px 16px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 10px;
 }
 
+/* راهنمای نمودار */
 .chart-legend {
-  display: flex; align-items: center; gap: 17px; margin: 22px 0 12px 14px; color: var(--muted); font-size: 9px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 4px 0 5px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.4;
 }
 
 .chart-legend span {
-  display: inline-flex; align-items: center; gap: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .legend-dot {
-  width: 7px; height: 7px; border-radius: 50%; display: inline-block;
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
 }
 
 .legend-dot.actual {
@@ -22,72 +44,160 @@
   background: #bbc7d1;
 }
 
+/* محدوده نمودار با ارتفاع کمتر */
 .chart-wrap {
-  height: 230px; display: grid; grid-template-columns: 28px 1fr; grid-template-rows: 1fr 22px; column-gap: 9px; direction: ltr;
+  display: grid;
+  grid-template-columns: 21px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) 16px;
+  column-gap: 5px;
+  width: 100%;
+  height: 125px;
+  min-height: 0;
+  direction: ltr;
 }
 
+/* اعداد محور عمودی */
 .y-labels {
-  grid-row: 1; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; padding: 2px 0 0; color: var(--muted-2); font-size: 8px; direction: rtl;
+  display: flex;
+  grid-row: 1;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-top: 2px;
+  color: var(--muted-2);
+  font-size: 8px;
+  line-height: 1;
+  direction: rtl;
 }
 
+/* نمودار خطی */
 .line-chart {
-  width: 100%; height: 100%; overflow: visible;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  overflow: visible;
 }
 
 .grid-lines path {
-  stroke: var(--line-soft); stroke-width: 1; stroke-dasharray: 3 5;
+  fill: none;
+  stroke: var(--line-soft);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
 }
 
 .area {
   fill: url(#areaFill);
 }
 
-.actual-line, .plan-line {
-  fill: none; stroke-linecap: round; stroke-linejoin: round;
+.actual-line,
+.plan-line {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .actual-line {
-  stroke: #199d8e; stroke-width: 2.3;
+  stroke: #199d8e;
+  stroke-width: 2;
 }
 
 .plan-line {
-  stroke: #bdc9d2; stroke-width: 1.5; stroke-dasharray: 4 4;
+  stroke: #bdc9d2;
+  stroke-width: 1.3;
+  stroke-dasharray: 4 4;
 }
 
 .chart-points circle {
-  fill: var(--surface); stroke: #199d8e; stroke-width: 2;
+  fill: var(--surface);
+  stroke: #199d8e;
+  stroke-width: 1.5;
 }
 
+/* روزهای هفته */
 .x-labels {
-  grid-column: 2; display: flex; align-items: flex-end; justify-content: space-between; color: var(--muted-2); font-size: 8px; direction: rtl;
+  display: flex;
+  grid-column: 2;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2px;
+  color: var(--muted-2);
+  font-size: 8px;
+  line-height: 1.3;
+  direction: rtl;
 }
 
+.x-labels span {
+  white-space: nowrap;
+}
+
+/* خلاصه تحلیلی زیر نمودار */
 .chart-insight {
-  margin-top: 13px; border-radius: 9px; display: flex; align-items: center; gap: 8px; background: var(--teal-soft); padding: 9px 10px; min-height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 26px;
+  margin-top: 5px;
+  padding: 4px 7px;
+  background: var(--teal-soft);
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 
 .insight-icon {
-  width: 22px; height: 22px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 7px; background: var(--teal-soft); color: var(--teal);
+  display: grid;
+  flex: 0 0 18px;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  color: var(--teal);
+  background: var(--surface);
+  border-radius: 5px;
 }
 
 .chart-insight p {
-  color: var(--muted); font-size: 9px; flex: 1;
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.5;
 }
 
 .chart-insight p strong {
-  color: var(--teal); font-weight: 600;
+  color: var(--teal);
+  font-weight: 600;
 }
 
 .chart-insight button {
-  border: 0; background: transparent; color: var(--teal); display: inline-flex; align-items: center; gap: 4px; font-size: 9px; white-space: nowrap;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 0;
+  color: var(--teal);
+  background: transparent;
+  border: 0;
+  font-size: 9px;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .chart-insight button svg {
   transform: rotate(180deg);
 }
 
+/* صفحه‌های باریک */
 @media (max-width: 560px) {
-  .chart-insight button { display: none; }
-  .chart-insight p { line-height: 1.7; }
-  .production-panel { padding-left: 14px; padding-right: 14px; }
+  .production-panel {
+    padding: 9px;
+  }
+
+  .chart-wrap {
+    height: 130px;
+  }
+
+  .chart-insight {
+    flex-wrap: wrap;
+  }
 }

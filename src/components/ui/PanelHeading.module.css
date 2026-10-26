@@ -1,35 +1,113 @@
+/* عنوان و محتوای بالای پنل */
 .panel-heading {
-  display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
 }
 
+/* عنوان اصلی پنل */
 .panel-heading h2 {
-  font-size: 13px; color: var(--text-strong); font-weight: 700; margin-bottom: 5px;
+  margin: 0;
+  color: var(--text-strong);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.6;
 }
 
+/* توضیحات زیر عنوان */
 .panel-heading p {
-  color: var(--muted-2); font-size: 9px;
+  margin: 2px 0 0;
+  color: var(--muted-2);
+  font-size: 9px;
+  line-height: 1.5;
 }
 
+/* ابزارهای سمت مقابل عنوان */
 .panel-tools {
-  display: flex; align-items: center; gap: 8px;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 6px;
 }
 
+/* انتخاب بازه زمانی */
 .select-control {
-  height: 30px; border: 1px solid var(--line); border-radius: 7px; background: var(--control-bg); color: var(--muted); font-size: 9px; padding: 0 9px; display: flex; align-items: center; gap: 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 27px;
+  padding: 0 8px;
+  color: var(--muted);
+  background: var(--control-bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 9px;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
+/* فلش انتخاب بازه */
 .select-control svg {
-  transform: rotate(90deg); color: var(--muted-2);
+  color: var(--muted-2);
+  transform: rotate(90deg);
 }
 
+/* دکمه گزینه‌های بیشتر */
 .more-button {
-  padding: 6px;
+  display: grid;
+  place-items: center;
+  padding: 4px;
+  color: var(--muted-2);
+  background: transparent;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
+.more-button:hover {
+  color: var(--teal);
+  background: var(--teal-soft);
+}
+
+/* دکمه مشاهده همه */
 .view-all {
-  border: 0; background: transparent; color: var(--teal); display: inline-flex; align-items: center; gap: 4px; font-size: 9px; white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 0;
+  color: var(--teal);
+  background: transparent;
+  border: 0;
+  font-size: 9px;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
+/* جهت فلش مشاهده همه */
 .view-all svg {
+  flex: 0 0 auto;
   transform: rotate(180deg);
+}
+
+/* چیدمان در پنل‌های باریک */
+@media (max-width: 480px) {
+  .panel-heading {
+    gap: 7px;
+  }
+
+  .panel-heading h2 {
+    font-size: 11px;
+  }
+
+  .panel-tools {
+    gap: 4px;
+  }
+
+  .select-control {
+    padding: 0 6px;
+  }
 }

@@ -1,64 +1,153 @@
+/* کارت شاخص‌ها */
 .kpi-card {
-  min-height: 158px; border-radius: 13px; border: 1px solid var(--line); background: var(--surface); padding: 17px 17px 15px; box-shadow: 0 5px 18px var(--shadow); position: relative; overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  height: 132px;
+  min-height: 132px;
+  padding: 10px 12px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  box-shadow: 0 3px 10px var(--shadow);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
+.kpi-card:hover {
+  border-color: var(--kpi-tint);
+  box-shadow: 0 5px 15px var(--shadow);
+}
+
+/* جلوه تزئینی ملایم */
 .kpi-card::after {
-  content: ''; position: absolute; width: 110px; height: 110px; border-radius: 50%; left: -57px; bottom: -68px; background: var(--kpi-tint); opacity: .45;
+  position: absolute;
+  left: -42px;
+  bottom: -52px;
+  width: 80px;
+  height: 80px;
+  background: var(--kpi-tint);
+  border-radius: 50%;
+  opacity: 0.35;
+  content: '';
+  pointer-events: none;
 }
 
+/* رنگ‌بندی کارت‌ها */
 .kpi-card.teal {
-  --kpi-color: var(--teal); --kpi-tint: var(--teal-soft);
+  --kpi-color: var(--teal);
+  --kpi-tint: var(--teal-soft);
 }
 
 .kpi-card.blue {
-  --kpi-color: var(--blue); --kpi-tint: var(--blue-soft);
+  --kpi-color: var(--blue);
+  --kpi-tint: var(--blue-soft);
 }
 
 .kpi-card.gold {
-  --kpi-color: var(--gold); --kpi-tint: var(--gold-soft);
+  --kpi-color: var(--gold);
+  --kpi-tint: var(--gold-soft);
 }
 
 .kpi-card.coral {
-  --kpi-color: var(--coral); --kpi-tint: var(--coral-soft);
+  --kpi-color: var(--coral);
+  --kpi-tint: var(--coral-soft);
 }
 
+/* ردیف بالای کارت */
 .kpi-top {
-  display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; position: relative; z-index: 1;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
 }
 
+/* آیکون شاخص */
 .kpi-icon {
-  width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; color: var(--kpi-color); background: var(--kpi-tint);
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  color: var(--kpi-color);
+  background: var(--kpi-tint);
+  border-radius: 8px;
 }
 
 .kpi-top button {
-  border: 0; background: transparent; color: var(--muted-2); display: grid; padding: 3px;
+  display: grid;
+  place-items: center;
+  padding: 3px;
+  color: var(--muted-2);
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
+/* عنوان شاخص */
 .kpi-label {
-  color: var(--muted); font-size: 10px; margin-bottom: 5px; position: relative; z-index: 1;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 3px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
 }
 
+/* مقدار شاخص */
 .kpi-value {
-  color: var(--text-strong); font-size: 26px; font-weight: 700; letter-spacing: -.7px; direction: rtl; position: relative; z-index: 1;
+  position: relative;
+  z-index: 1;
+  color: var(--text-strong);
+  font-size: 22px;
+  font-weight: 750;
+  letter-spacing: -0.5px;
+  line-height: 1.25;
+  direction: rtl;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .kpi-value small {
-  font-size: 10px; font-weight: 400; color: var(--muted-2); margin-right: 6px; letter-spacing: 0;
+  margin-right: 4px;
+  color: var(--muted-2);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0;
 }
 
+/* اطلاعات پایین کارت */
 .kpi-footer {
-  display: flex; align-items: center; gap: 8px; margin-top: 13px; color: var(--muted-2); font-size: 9px; position: relative; z-index: 1;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 6px;
+  color: var(--muted-2);
+  font-size: 9px;
+  line-height: 1.4;
 }
 
+/* درصد تغییر */
 .change {
-  display: inline-flex; align-items: center; gap: 2px; font-size: 10px; font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 9px;
+  font-weight: 650;
+  white-space: nowrap;
 }
 
 .change.positive {
   color: var(--teal);
 }
 
-.change.negative {
+.change.negative,
+.kpi-card.coral .change {
   color: var(--coral);
 }
 
@@ -66,13 +155,14 @@
   stroke-width: 2.4;
 }
 
-.kpi-card.coral .change {
-  color: var(--coral);
-}
+/* نمایش مقادیر طولانی در صفحه‌های باریک */
+@media (max-width: 480px) {
+  .kpi-card {
+    height: auto;
+    min-height: 126px;
+  }
 
-@media (max-width: 560px) {
-  .kpi-card { min-height: 145px; padding: 13px; }
-  .kpi-value { font-size: 22px; }
-  .kpi-footer { display: block; }
-  .kpi-footer > span:last-child { display: block; margin-top: 4px; }
+  .kpi-value {
+    font-size: 21px;
+  }
 }
