@@ -1,10 +1,42 @@
+import { Icon } from '../../../components/ui/Icon'
+import type { IconName } from '../../../components/ui/Icon'
+import { formatPersianNumber } from '../../../shared/lib/number'
+import { selectProductionRatios } from '../model/refining.selectors'
+import type {
+  ProductKey,
+  RefiningProductionResponse,
+} from '../model/refining.types'
+import styles from './ProductTotals.module.css'
 
-import { Icon } from '../../../components/ui/Icon';
-import { formatPersianNumber } from '../../../shared/lib/number';
-import { selectProductionRatios } from '../model/refining.selectors';
-import styles from './ProductTotals.module.css';
+// نوع اطلاعات هر محصول
+type ProductItem = {
+  key: ProductKey
+  label: string
+  icon: IconName
+  tone: 'coral' | 'purple' | 'teal' | 'blue' | 'gold'
+}
 
-const inputProducts = [
+// نوع اطلاعات شاخص‌های تولید
+type ProductionRatio = {
+  label: string
+  value: number | string | null | undefined
+  caption: string
+  icon: IconName
+  tone: 'teal' | 'gold'
+}
+
+// نوع پراپ‌های گروه محصولات
+type ProductGroupProps = {
+  title: string
+  description: string
+  products: ProductItem[]
+  data: RefiningProductionResponse
+  className: string
+  icon: IconName
+}
+
+// محصولات ورودی
+const inputProducts: ProductItem[] = [
   {
     key: 'crudeOil',
     label: 'نفت خام',
@@ -17,9 +49,10 @@ const inputProducts = [
     icon: 'settings',
     tone: 'purple',
   },
-];
+]
 
-const outputProducts = [
+// محصولات خروجی
+const outputProducts: ProductItem[] = [
   {
     key: 'gasoline',
     label: 'بنزین',
@@ -38,21 +71,28 @@ const outputProducts = [
     icon: 'tank',
     tone: 'gold',
   },
-];
+]
 
-function formatQuantity(value) {
+// قالب‌بندی مقادیر عددی
+function formatQuantity(
+  value: number | string | null | undefined,
+): string {
   if (value === null || value === undefined || value === '') {
-    return '—';
+    return '—'
   }
 
   return formatPersianNumber(String(value), {
     minimumFractionDigits: 3,
     maximumFractionDigits: 3,
-  });
+  })
 }
 
-function getProductionRatios(data) {
-  const { convertRate, fuelOilRate } = selectProductionRatios(data);
+// محاسبه شاخص‌های تولید
+function getProductionRatios(
+  data: RefiningProductionResponse,
+): ProductionRatio[] {
+  const { convertRate, fuelOilRate } =
+    selectProductionRatios(data)
 
   return [
     {
@@ -69,22 +109,35 @@ function getProductionRatios(data) {
       icon: 'tank',
       tone: 'gold',
     },
-  ];
+  ]
 }
 
-function formatPercentage(value) {
-  if (value === null || value === undefined || !Number.isFinite(Number(value))) {
-    return '—';
+// قالب‌بندی درصد
+function formatPercentage(
+  value: number | string | null | undefined,
+): string {
+  if (
+    value === null ||
+    value === undefined ||
+    value === '' ||
+    !Number.isFinite(Number(value))
+  ) {
+    return '—'
   }
 
   return formatPersianNumber(Number(value), {
     minimumFractionDigits: 1,
     maximumFractionDigits: 1,
-  });
+  })
 }
 
-export function ProductTotals({ data }) {
-  const ratios = getProductionRatios(data);
+// نمایش مجموع ورودی‌ها، خروجی‌ها و شاخص‌های تولید
+type ProductTotalsProps = {
+  data: RefiningProductionResponse
+}
+
+export function ProductTotals({ data }: ProductTotalsProps) {
+  const ratios = getProductionRatios(data)
 
   return (
     <div
@@ -139,7 +192,9 @@ export function ProductTotals({ data }) {
               <h3>{ratio.label}</h3>
 
               <div className={styles.ratioValue}>
-                <strong>{formatPercentage(ratio.value)}</strong>
+                <strong>
+                  {formatPercentage(ratio.value)}
+                </strong>
                 <span>درصد</span>
               </div>
 
@@ -149,9 +204,10 @@ export function ProductTotals({ data }) {
         </div>
       </section>
     </div>
-  );
+  )
 }
 
+// گروه کارت‌های محصولات
 function ProductGroup({
   title,
   description,
@@ -159,7 +215,7 @@ function ProductGroup({
   data,
   className,
   icon,
-}) {
+}: ProductGroupProps) {
   return (
     <section className={`${styles.group} ${className}`}>
       <div className={styles.groupHeading}>
@@ -196,5 +252,5 @@ function ProductGroup({
         ))}
       </div>
     </section>
-  );
+  )
 }

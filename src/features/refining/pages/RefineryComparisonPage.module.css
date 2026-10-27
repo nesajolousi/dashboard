@@ -235,49 +235,6 @@
    نمودار مقایسه
 ----------------------------- */
 
-.chartRows {
-  display: grid;
-  gap: 15px;
-  margin-top: 24px;
-}
-
-.chartRow {
-  display: grid;
-  grid-template-columns: 190px minmax(0, 1fr) 80px;
-  align-items: center;
-  gap: 16px;
-}
-
-.chartName {
-  color: var(--text);
-  font-size: 11px;
-}
-
-.barTrack {
-  height: 18px;
-  overflow: hidden;
-  border-radius: 5px;
-  background: var(--surface-muted);
-}
-
-.bar {
-  height: 100%;
-  border-radius: 4px;
-  background: var(--blue);
-  transition: width 200ms ease;
-}
-
-.bestBar {
-  background: var(--teal);
-}
-
-.chartValue {
-  color: var(--text-strong);
-  font-size: 12px;
-  font-variant-numeric: tabular-nums;
-  text-align: end;
-}
-
 .chartEmpty {
   padding: 40px 12px;
   color: var(--muted);
@@ -441,13 +398,6 @@
    نمایشگرهای متوسط
 ----------------------------- */
 
-@media (max-width: 1120px) {
-  .chartRow {
-    grid-template-columns: 165px minmax(0, 1fr) 70px;
-    gap: 12px;
-  }
-}
-
 /* -----------------------------
    نمایشگرهای کوچک
 ----------------------------- */
@@ -495,18 +445,6 @@
     padding: 16px;
   }
 
-  .chartRow {
-    grid-template-columns: minmax(0, 1fr) 65px;
-    gap: 6px 12px;
-  }
-
-  .chartName {
-    grid-column: 1 / -1;
-  }
-
-  .barTrack {
-    height: 15px;
-  }
 }
 
 /* -----------------------------
@@ -524,8 +462,7 @@
   .summaryCard,
   .table tbody tr,
   .selectionActions button,
-  .empty button,
-  .bar {
+  .empty button {
     transition: none;
   }
 }

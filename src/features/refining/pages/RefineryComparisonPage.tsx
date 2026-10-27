@@ -3,6 +3,8 @@ import { Footer } from '../../../components/layout/Footer'
 import { Icon } from '../../../components/ui/Icon'
 import { PanelHeading } from '../../../components/ui/PanelHeading'
 import { navigationLabels } from '../../../config/navigation'
+import { useChartPalette } from '../../../shared/charts/chartTheme'
+import { HorizontalBarChart } from '../../../shared/charts/HorizontalBarChart'
 import { formatPersianNumber } from '../../../shared/lib/number'
 import sharedStyles from '../../../styles/shared.module.css'
 import { useRefiningProduction } from '../api/useRefiningProduction'
@@ -24,6 +26,7 @@ export function RefineryComparisonPage() {
   const [selectedIds, setSelectedIds] = useState<number[] | null>(null)
   const [metricKey, setMetricKey] = useState<ComparisonMetricKey>('gasoline')
   const [direction, setDirection] = useState<'asc' | 'desc'>('desc')
+  const palette = useChartPalette()
   const state = useRefiningProduction(dateRange)
   const refineries = selectRefineryComparisons(state.data.cards)
   const selected = refineries.filter((refinery) => selectedIds === null || selectedIds.includes(refinery.id))
@@ -34,7 +37,6 @@ export function RefineryComparisonPage() {
   const average = knownRows.length
     ? knownRows.reduce((total, row) => total + row.values[metricKey]!, 0) / knownRows.length
     : null
-  const maximum = Math.max(0, ...knownRows.map((row) => row.values[metricKey]!))
   const unitLabel = metric.unit === 'rate' ? 'درصد' : 'واحد گزارش سرویس'
 
   const toggleRefinery = (id: number) => {
@@ -155,25 +157,27 @@ export function RefineryComparisonPage() {
               {knownRows.length === 0 ? (
                 <div className={styles.chartEmpty}>برای این شاخص داده‌ای موجود نیست؛ شاخص دیگری را انتخاب کنید.</div>
               ) : (
-                <div className={styles.chartRows}>
-                  {rows.map((row) => {
-                    const value = row.values[metricKey]
-                    return (
-                      <div key={row.id} className={styles.chartRow}>
-                        <span className={styles.chartName}>{row.name}</span>
-                        <div className={styles.barTrack} aria-hidden="true">
-                          {value !== null && (
-                            <div
-                              className={`${styles.bar} ${row.id === best?.id ? styles.bestBar : ''}`}
-                              style={{ width: `${maximum > 0 ? (value! / maximum) * 100 : 0}%` }}
-                            />
-                          )}
-                        </div>
-                        <strong className={styles.chartValue}>{formatComparisonValue(value, metric)}</strong>
-                      </div>
-                    )
-                  })}
-                </div>
+                <HorizontalBarChart
+                  ariaLabel={`نمودار میله‌ای مقایسه ${metric.label}`}
+                  categories={rows.map((row) => row.name)}
+                  valueFormatter={(value) => formatComparisonValue(value, metric)}
+                  series={[
+                    {
+                      id: 'best',
+                      stack: 'value',
+                      label: `${metric.preferLower ? 'کمترین' : 'بیشترین'} ${metric.label}`,
+                      color: palette.teal,
+                      data: rows.map((row) => (row.id === best?.id ? row.values[metricKey] : null)),
+                    },
+                    {
+                      id: 'others',
+                      stack: 'value',
+                      label: metric.label,
+                      color: palette.blue,
+                      data: rows.map((row) => (row.id === best?.id ? null : row.values[metricKey])),
+                    },
+                  ]}
+                />
               )}
               <p className={styles.note}>مقدار ناموجود با «—» نمایش داده می‌شود و در میانگین محاسبه نمی‌شود.</p>
             </section>

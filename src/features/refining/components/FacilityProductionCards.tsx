@@ -1,4 +1,3 @@
-
 import { Icon } from '../../../components/ui/Icon'
 import { PanelHeading } from '../../../components/ui/PanelHeading'
 import {
@@ -9,31 +8,59 @@ import sharedStyles from '../../../styles/shared.module.css'
 import { selectFacilityTotals } from '../model/refining.selectors'
 import styles from './FacilityProductionCards.module.css'
 
+// نوع اطلاعات هر مرکز بر اساس مدل موجود پروژه
+type FacilityCardData = Parameters<
+  typeof selectFacilityTotals
+>[0]
+
+type FacilityProductionCardsProps = {
+  cards: FacilityCardData[]
+}
+
+type InputProduct = {
+  key: 'crudeOil' | 'gasCondensate'
+  label: string
+}
+
+type OutputProduct = {
+  key: 'gasOil' | 'gasoline' | 'fuelOil'
+  label: string
+  tone: 'teal' | 'gold' | 'purple'
+}
+
 // خوراک‌های ورودی
-const inputProducts = [
+const inputProducts: InputProduct[] = [
   { key: 'crudeOil', label: 'نفت خام' },
   { key: 'gasCondensate', label: 'میعانات گازی' },
 ]
 
 // فرآورده‌های خروجی
-const outputProducts = [
+const outputProducts: OutputProduct[] = [
   { key: 'gasOil', label: 'گازوئیل', tone: 'teal' },
   { key: 'gasoline', label: 'بنزین', tone: 'gold' },
   { key: 'fuelOil', label: 'نفت کوره', tone: 'purple' },
 ]
 
 // قالب‌بندی مقادیر عددی
-function formatQuantity(value) {
-  return formatPersianNumber(value, {
+function formatQuantity(
+  value: number | string | null | undefined,
+): string {
+  if (value === null || value === undefined || value === '') {
+    return '—'
+  }
+
+  return formatPersianNumber(String(value), {
     minimumFractionDigits: 0,
     maximumFractionDigits: 3,
   })
 }
 
 // نمایش کارت‌های پالایشگاه‌ها و مخازن
-export function FacilityProductionCards({ cards }) {
+export function FacilityProductionCards({
+  cards,
+}: FacilityProductionCardsProps) {
   const refineryCount = cards.filter(
-    (card) => !card.name.startsWith('انبار')
+    (card) => !card.name.startsWith('انبار'),
   ).length
 
   const storageCount = cards.length - refineryCount
@@ -48,14 +75,15 @@ export function FacilityProductionCards({ cards }) {
         description={`${cards.length} مرکز؛ ${refineryCount} پالایشگاه و ${storageCount} مخزن`}
       />
 
-      {/* شبکه کارت‌ها */}
       <div className={styles.grid}>
         {cards.map((card) => (
-          <FacilityCard key={card.id} card={card} />
+          <FacilityCard
+            key={card.id}
+            card={card}
+          />
         ))}
       </div>
 
-      {/* توضیحات پایین پنل */}
       <p className={styles.note}>
         مقادیر برای بازه انتخاب‌شده از سرویس تولید دریافت می‌شوند.
         نرخ ناموجود با خط تیره نمایش داده می‌شود.
@@ -65,7 +93,11 @@ export function FacilityProductionCards({ cards }) {
 }
 
 // کارت اطلاعات هر پالایشگاه یا مخزن
-function FacilityCard({ card }) {
+type FacilityCardProps = {
+  card: FacilityCardData
+}
+
+function FacilityCard({ card }: FacilityCardProps) {
   const isStorage = card.name.startsWith('انبار')
 
   const {
@@ -76,16 +108,14 @@ function FacilityCard({ card }) {
 
   return (
     <article className={styles.card}>
-      {/* عنوان، نوع مرکز و آیکون */}
       <header className={styles.cardHeader}>
         <div className={styles.cardInfo}>
           <h3>{card.name}</h3>
 
-          {/* شاخص‌های عملکرد با نوشته کوچک‌تر */}
           <div className={styles.headerMeta}>
-           {isStorage && (
-  <span className={styles.storage}>مخزن</span>
-)}
+            {isStorage && (
+              <span className={styles.storage}>مخزن</span>
+            )}
 
             <span className={styles.headerRate}>
               <span>نرخ تبدیل خوراک:</span>
@@ -100,11 +130,13 @@ function FacilityCard({ card }) {
         </div>
 
         <div className={styles.cardIcon} aria-hidden="true">
-          <Icon name={isStorage ? 'tank' : 'factory'} size={22} />
+          <Icon
+            name={isStorage ? 'tank' : 'factory'}
+            size={22}
+          />
         </div>
       </header>
 
-      {/* خوراک ورودی */}
       <section
         className={styles.feed}
         aria-label={`خوراک ورودی ${card.name}`}
@@ -116,9 +148,14 @@ function FacilityCard({ card }) {
 
         <div className={styles.feedRows}>
           {inputProducts.map((product) => (
-            <div className={styles.feedRow} key={product.key}>
+            <div
+              className={styles.feedRow}
+              key={product.key}
+            >
               <span>{product.label}</span>
-              <strong>{formatQuantity(card[product.key])}</strong>
+              <strong>
+                {formatQuantity(card[product.key])}
+              </strong>
             </div>
           ))}
         </div>
@@ -129,7 +166,6 @@ function FacilityCard({ card }) {
         </div>
       </section>
 
-      {/* محصولات تولیدی */}
       <section
         className={styles.products}
         aria-label={`محصولات تولیدی ${card.name}`}
@@ -146,7 +182,9 @@ function FacilityCard({ card }) {
               key={product.key}
             >
               <span>{product.label}</span>
-              <strong>{formatQuantity(card[product.key])}</strong>
+              <strong>
+                {formatQuantity(card[product.key])}
+              </strong>
             </div>
           ))}
         </div>

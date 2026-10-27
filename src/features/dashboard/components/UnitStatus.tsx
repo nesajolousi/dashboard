@@ -1,12 +1,23 @@
-
 import { Icon } from '../../../components/ui/Icon'
+import type { IconName } from '../../../components/ui/Icon'
 import { PanelHeading } from '../../../components/ui/PanelHeading'
 import sharedStyles from '../../../styles/shared.module.css'
 import panelHeadingStyles from '../../../components/ui/PanelHeading.module.css'
 import styles from './UnitStatus.module.css'
 
+// نوع اطلاعات هر واحد پالایشگاهی یا انبار نفت
+type UnitStatusItem = {
+  name: string
+  caption: string
+  value: string
+  progress: number
+  status: string
+  statusClass: 'online' | 'warning'
+  icon: IconName
+}
+
 // اطلاعات واحدهای پالایشگاهی و انبار نفت
-const units = [
+const units: UnitStatusItem[] = [
   {
     name: 'پالایشگاه تهران',
     caption: 'ظرفیت تولید',
@@ -36,6 +47,7 @@ const units = [
   },
 ]
 
+// نمایش وضعیت واحدها
 export function UnitStatus() {
   return (
     <article
@@ -58,10 +70,14 @@ export function UnitStatus() {
       {/* فهرست وضعیت واحدها */}
       <div className={styles['unit-list']}>
         {units.map((unit) => {
+          // تشخیص انبار نفت از پالایشگاه
           const isStorage = unit.icon === 'tank'
 
           return (
-            <div className={styles['unit-row']} key={unit.name}>
+            <div
+              className={styles['unit-row']}
+              key={unit.name}
+            >
               {/* آیکون واحد */}
               <div
                 className={`${styles['unit-avatar']} ${
@@ -83,12 +99,16 @@ export function UnitStatus() {
               <div className={styles['unit-progress']}>
                 <div>
                   <span>{unit.value}</span>
-                  <small>{isStorage ? 'پرشدگی' : 'فعال'}</small>
+                  <small>
+                    {isStorage ? 'پرشدگی' : 'فعال'}
+                  </small>
                 </div>
 
                 <div className={styles['progress-track']}>
                   <i
-                    style={{ width: `${unit.progress}%` }}
+                    style={{
+                      width: `${unit.progress}%`,
+                    }}
                   />
                 </div>
               </div>

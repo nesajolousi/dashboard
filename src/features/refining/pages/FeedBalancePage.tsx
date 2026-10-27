@@ -3,6 +3,8 @@ import { Footer } from '../../../components/layout/Footer'
 import { Icon } from '../../../components/ui/Icon'
 import { PanelHeading } from '../../../components/ui/PanelHeading'
 import { navigationLabels } from '../../../config/navigation'
+import { useChartPalette } from '../../../shared/charts/chartTheme'
+import { HorizontalBarChart } from '../../../shared/charts/HorizontalBarChart'
 import { formatPersianNumber } from '../../../shared/lib/number'
 import sharedStyles from '../../../styles/shared.module.css'
 import { useRefiningProduction } from '../api/useRefiningProduction'
@@ -36,6 +38,7 @@ export function FeedBalancePage() {
   const [dateRange, setDateRange] = useState(getInitialDateRange)
   const [sortKey, setSortKey] = useState<SortKey>('delivered')
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc')
+  const palette = useChartPalette()
   const state = useRefiningProduction(dateRange)
   const rows = selectFeedBalance(state.data.cards)
   const summary = selectFeedBalanceSummary(rows)
@@ -49,8 +52,6 @@ export function FeedBalancePage() {
     }
     return left.name.localeCompare(right.name, 'fa')
   }), [rows, sortDirection, sortKey])
-  const maxDelivered = Math.max(0, ...rows.map((row) => row.delivered ?? 0))
-  const maxConsumed = Math.max(0, ...rows.map((row) => row.consumed ?? 0))
   const estimatedRows = rows.filter((row) => row.isEstimated).length
   const hasConsumptionData = rows.some((row) => row.consumed !== null)
 
@@ -138,20 +139,27 @@ export function FeedBalancePage() {
         {rows.length === 0 ? (
           <div className={styles.empty}>اطلاعات پالایشگاهی برای این بازه موجود نیست.</div>
         ) : (
-          <div className={styles.chartRows}>
-            {sortedRows.map((row) => (
-              <div className={styles.chartRow} key={row.id}>
-                <span className={styles.chartName}>{row.name}</span>
-                <div className={styles.chartTracks} aria-label={`${row.name}: تحویل ${formatFeedBalanceValue(row.delivered, 'quantity')}، مصرف ${formatFeedBalanceValue(row.consumed, 'quantity')}`}>
-                  <div className={styles.track}><span className={styles.deliveredBar} style={{ width: `${maxDelivered > 0 && row.delivered !== null ? (row.delivered / maxDelivered) * 100 : 0}%` }} /></div>
-                  <div className={styles.track}><span className={styles.consumedBar} style={{ width: `${maxConsumed > 0 && row.consumed !== null ? (row.consumed / maxConsumed) * 100 : 0}%` }} /></div>
-                </div>
-                <strong className={styles.chartValue}>{formatFeedBalanceValue(row.consumed, 'quantity')}</strong>
-              </div>
-            ))}
-          </div>
+          <HorizontalBarChart
+            ariaLabel="نمودار میله‌ای تحویل و مصرف خوراک پالایشگاه‌ها"
+            categories={sortedRows.map((row) => row.name)}
+            valueFormatter={(value) => formatFeedBalanceValue(value, 'quantity')}
+            series={[
+              {
+                id: 'delivered',
+                label: 'تحویل خوراک',
+                color: palette.teal,
+                data: sortedRows.map((row) => row.delivered),
+              },
+              {
+                id: 'consumed',
+                label: 'مصرف خوراک',
+                color: palette.blue,
+                data: sortedRows.map((row) => row.consumed),
+              },
+            ]}
+          />
         )}
-        <p className={styles.note}>محور نمودار برای تحویل و مصرف جداگانه مقیاس‌بندی شده است تا اختلاف‌های کوچک هم دیده شوند.</p>
+        <p className={styles.note}>تحویل و مصرف روی یک محور مشترک رسم شده‌اند؛ برای دیدن مقدار دقیق، نشانگر را روی هر میله ببرید. مقدار ناموجود رسم نمی‌شود.</p>
       </section>
 
       <section className={`${sharedStyles.panel} ${styles.tablePanel}`} aria-label="جدول میزان تحویل و مصرف خوراک">

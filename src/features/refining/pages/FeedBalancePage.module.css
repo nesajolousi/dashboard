@@ -14,15 +14,6 @@
 .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 3px; }
 .deliveredLegend { background: var(--teal); }
 .consumedLegend { background: var(--blue); }
-.chartRows { display: grid; gap: 16px; margin-top: 21px; }
-.chartRow { display: grid; grid-template-columns: 190px minmax(0, 1fr) 80px; align-items: center; gap: 15px; }
-.chartName { overflow: hidden; color: var(--text); font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
-.chartTracks { display: grid; gap: 5px; }
-.track { height: 9px; overflow: hidden; border-radius: 4px; background: var(--surface-muted); }
-.track span { display: block; height: 100%; border-radius: inherit; transition: width .2s ease; }
-.deliveredBar { background: var(--teal); }
-.consumedBar { background: var(--blue); }
-.chartValue { color: var(--text-strong); font-size: 11px; font-variant-numeric: tabular-nums; text-align: end; }
 .empty { padding: 34px 12px; color: var(--muted); font-size: 11px; line-height: 1.9; text-align: center; }
 .note { margin: 15px 0 0; color: var(--muted); font-size: 10px; line-height: 1.9; }
 .tablePanel { margin-top: 21px; }
@@ -48,18 +39,11 @@
 
 @media (max-width: 1120px) {
   .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .chartRow { grid-template-columns: 165px minmax(0, 1fr) 75px; gap: 12px; }
 }
 
 @media (max-width: 560px) {
   .summary { grid-template-columns: 1fr; gap: 12px; }
   .summaryCard { padding: 16px; }
   .chartPanel, .tablePanel { padding: 18px 14px; }
-  .chartRow { grid-template-columns: minmax(0, 1fr) 67px; gap: 7px 12px; }
-  .chartName { grid-column: 1 / -1; }
   .tableToolbar { align-items: flex-start; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .track span { transition: none; }
 }

@@ -81,3 +81,9 @@ html { direction: rtl; }
 body { margin: 0; min-width: 320px; min-height: 100vh; background: var(--app-bg); color: var(--ink); transition: background-color .2s ease, color .2s ease; }
 button, input { font: inherit; }
 button { cursor: pointer; }
+
+/* تولتیپ نمودارها در بدنه صفحه رندر می‌شود؛ فونت و جهت فارسی را از اینجا می‌گیرد */
+[class*='MuiChartsTooltip'] {
+  font-family: 'Vazirmatn', Tahoma, sans-serif;
+  direction: rtl;
+}

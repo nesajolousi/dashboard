@@ -1,4 +1,28 @@
-import type { Kpi, Shipment } from './dashboard.types'
+import type {
+  Kpi,
+  ProductMixData,
+  ProductionTrendData,
+  Shipment,
+} from './dashboard.types'
+
+// داده نمونه؛ پس از آماده‌شدن API داشبورد با داده واقعی جایگزین می‌شود
+export const productionTrend: ProductionTrendData = {
+  unit: 'هزار بشکه',
+  labels: ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه'],
+  actual: [90, 101, 108, 98, 120, 128, 141],
+  plan: [92, 98, 104, 100, 112, 118, 126],
+}
+
+export const productMix: ProductMixData = {
+  total: '۱۲۸٫۴',
+  unit: 'هزار بشکه',
+  items: [
+    { key: 'petrol', label: 'بنزین', value: 42 },
+    { key: 'diesel', label: 'گازوئیل', value: 31 },
+    { key: 'kerosene', label: 'نفت سفید', value: 17 },
+    { key: 'other', label: 'سایر محصولات', value: 10 },
+  ],
+}
 
 export const kpis: Kpi[] = [
   {

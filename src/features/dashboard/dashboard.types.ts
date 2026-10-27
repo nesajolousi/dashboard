@@ -10,6 +10,26 @@ export type Kpi = {
   caption: string
 }
 
+export type ProductionTrendData = {
+  unit: string
+  labels: string[]
+  actual: number[]
+  plan: number[]
+}
+
+export type ProductMixItem = {
+  key: 'petrol' | 'diesel' | 'kerosene' | 'other'
+  label: string
+  /** سهم از کل تولید، به درصد */
+  value: number
+}
+
+export type ProductMixData = {
+  total: string
+  unit: string
+  items: ProductMixItem[]
+}
+
 export type Shipment = {
   product: string
   code: string

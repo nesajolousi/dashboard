@@ -1,9 +1,13 @@
-
+import type { Kpi } from '../dashboard.types'
 import { KpiCard } from './KpiCard'
 import styles from './KpiGrid.module.css'
 
 // نمایش کارت‌های شاخص کلیدی داشبورد
-export function KpiGrid({ items }) {
+type KpiGridProps = {
+  items: Kpi[]
+}
+
+export function KpiGrid({ items }: KpiGridProps) {
   return (
     <section
       className={styles['kpi-grid']}
