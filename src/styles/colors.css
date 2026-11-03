@@ -1,0 +1,151 @@
+/*
+  تنها منبع رنگ‌های پروژه
+
+  قاعده: هیچ رنگی (hex / rgb / rgba) خارج از این فایل نوشته نمی‌شود.
+  ماژول‌های CSS با متغیرها (مثلاً color: var(--teal)) و نمودارها با chartColors (src/shared/charts/chartTheme.ts)
+  از همین‌جا می‌خوانند. برای تغییر رنگ، فقط همین فایل را ویرایش کنید.
+
+  ساختار:
+    :root              ← تم روشن (و مقدار پیش‌فرض همه‌چیز)
+    [data-theme=dark]  ← فقط مقدارهایی که در تم تاریک فرق می‌کنند
+  هر متغیری که در بخش تاریک نیامده، همان مقدار تم روشن را دارد.
+*/
+
+:root {
+  /* ---------- پایه: پس‌زمینه، متن، خطوط ---------- */
+  --app-bg: #f6f8fb;
+  --navy: #0d2239;
+  --navy-2: #122d49;
+  --ink: #172b42;
+  --text-strong: #19314b;
+  --text: #334b62;
+  --muted: #8493a5;
+  --muted-2: #a1aeba;
+  --line: #e9edf2;
+  --line-soft: #f0f2f4;
+  --surface: #fff;
+  --surface-muted: #fafbfc;
+  --control-bg: #fbfcfd;
+  --topbar-bg: rgba(255, 255, 255, .93);
+  --shadow: rgba(37, 63, 89, .025);
+  --shadow-soft: rgb(0 0 0 / 3%);
+  --overlay: rgba(9, 27, 44, .38);
+  --on-accent: #fff;
+
+  /* ---------- رنگ‌های اصلی و پس‌زمینه ملایم آن‌ها ---------- */
+  --teal: #159b8b;
+  --teal-soft: #e7f7f4;
+  --blue: #3972d6;
+  --blue-soft: #edf3ff;
+  --gold: #d89b39;
+  --gold-soft: #fff6e7;
+  --coral: #db7165;
+  --coral-soft: #fff0ee;
+  --purple: #7b65c2;
+  --purple-soft: #f0edff;
+
+  /* رنگ‌های روی کارت تیره پالایشگاه */
+  --cyan: #12d1ec;
+  --violet: #9d80ff;
+
+  /* آواتار کاربر */
+  --avatar-bg: #d8a566;
+
+  /* ---------- وضعیت‌ها (نقطه و متن) ---------- */
+  --status-ok-text: #159689;
+  --status-ok-dot: #1ca894;
+  --status-ok-glow: rgba(28, 168, 148, 0.12);
+  --status-sent-dot: #20a38e;
+  --status-warn-text: #c78a32;
+  --status-warn-dot: #e0a142;
+  --status-loading-text: #c98b30;
+  --status-loading-dot: #e0a343;
+  --status-waiting-dot: #b3c0ca;
+
+  /* نوارهای پیشرفت واحدها */
+  --bar-teal: #2aa99a;
+  --bar-blue: #467bd5;
+  --bar-gold: #db9b3e;
+
+  /* ---------- نمودارها (chartColors در chartTheme.ts به این‌ها اشاره می‌کند) ---------- */
+  --chart-teal: #199d8e;
+  --chart-blue: #4d80dc;
+  --chart-gold: #d8a348;
+  --chart-coral: #db7165;
+  --chart-plan: #bdc9d2;
+  --chart-neutral: #dfe6ec;
+
+  /* ---------- سایدبار (در هر دو تم یکسان) ---------- */
+  --sidebar-text: #eaf2f9;
+  --sidebar-subtle: #7d91a6;
+  --sidebar-label: #627993;
+  --sidebar-item: #8da0b4;
+  --sidebar-close: #9eb0c2;
+  --sidebar-toggle: #71879b;
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.05);
+  --sidebar-hover-text: #f5fbff;
+  --sidebar-active-text: #f5ffff;
+  --sidebar-active-bg-from: rgba(25, 169, 151, 0.17);
+  --sidebar-active-bg-to: rgba(25, 169, 151, 0.05);
+  --sidebar-accent: #26b7a5;
+  --sidebar-pulse: #2bb6a4;
+  --sidebar-pulse-ring: rgba(43, 182, 164, 0.12);
+  --sidebar-divider: rgba(145, 172, 197, 0.2);
+  --sidebar-drawer-shadow: rgba(10, 29, 47, 0.15);
+
+  /* لوگوی سایدبار */
+  --brand-start: #2ab9a4;
+  --brand-end: #087f76;
+  --brand-glow: rgba(16, 170, 149, 0.2);
+  --brand-inner: #e7f9f5;
+
+  /* کارت پشتیبانی سایدبار */
+  --sidebar-card-from: #173753;
+  --sidebar-card-to: #122d48;
+  --sidebar-card-border: rgba(129, 180, 216, 0.12);
+  --sidebar-card-icon: #45c4af;
+  --sidebar-card-title: #ecf6fc;
+  --sidebar-card-text: #7890a6;
+  --sidebar-card-link: #42bea9;
+
+  /* کاربر پایین سایدبار */
+  --sidebar-user-divider: rgba(145, 172, 197, 0.14);
+  --sidebar-user-name: #dbe7f0;
+  --sidebar-user-meta: #6f859a;
+  --sidebar-user-action: #6b8399;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  /* پایه */
+  --app-bg: #0b1420;
+  --navy: #081522;
+  --navy-2: #10283d;
+  --ink: #edf4fb;
+  --text-strong: #edf4fb;
+  --text: #c7d4e1;
+  --muted: #9aacbe;
+  --muted-2: #8da1b4;
+  --line: #27394d;
+  --line-soft: #223346;
+  --surface: #121f2f;
+  --surface-muted: #172638;
+  --control-bg: #17283a;
+  --topbar-bg: rgba(13, 25, 40, .94);
+  --shadow: rgba(0, 0, 0, .2);
+
+  /* پس‌زمینه‌های ملایم */
+  --teal-soft: #123b3b;
+  --blue-soft: #182e4d;
+  --gold-soft: #3b301d;
+  --coral-soft: #412523;
+
+  /* نمودارها */
+  --chart-teal: #2bc0ae;
+  --chart-blue: #6b98ec;
+  --chart-gold: #e6b45c;
+  --chart-coral: #ec8a7e;
+  --chart-plan: #5b7086;
+  --chart-neutral: #3a4d62;
+}

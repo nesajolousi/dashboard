@@ -3,7 +3,7 @@ import { Footer } from '../../../components/layout/Footer'
 import { Icon } from '../../../components/ui/Icon'
 import { PanelHeading } from '../../../components/ui/PanelHeading'
 import { navigationLabels } from '../../../config/navigation'
-import { useChartPalette } from '../../../shared/charts/chartTheme'
+import { chartColors } from '../../../shared/charts/chartTheme'
 import { HorizontalBarChart } from '../../../shared/charts/HorizontalBarChart'
 import { formatPersianNumber } from '../../../shared/lib/number'
 import sharedStyles from '../../../styles/shared.module.css'
@@ -26,7 +26,6 @@ export function RefineryComparisonPage() {
   const [selectedIds, setSelectedIds] = useState<number[] | null>(null)
   const [metricKey, setMetricKey] = useState<ComparisonMetricKey>('gasoline')
   const [direction, setDirection] = useState<'asc' | 'desc'>('desc')
-  const palette = useChartPalette()
   const state = useRefiningProduction(dateRange)
   const refineries = selectRefineryComparisons(state.data.cards)
   const selected = refineries.filter((refinery) => selectedIds === null || selectedIds.includes(refinery.id))
@@ -166,14 +165,14 @@ export function RefineryComparisonPage() {
                       id: 'best',
                       stack: 'value',
                       label: `${metric.preferLower ? 'کمترین' : 'بیشترین'} ${metric.label}`,
-                      color: palette.teal,
+                      color: chartColors.teal,
                       data: rows.map((row) => (row.id === best?.id ? row.values[metricKey] : null)),
                     },
                     {
                       id: 'others',
                       stack: 'value',
                       label: metric.label,
-                      color: palette.blue,
+                      color: chartColors.blue,
                       data: rows.map((row) => (row.id === best?.id ? null : row.values[metricKey])),
                     },
                   ]}

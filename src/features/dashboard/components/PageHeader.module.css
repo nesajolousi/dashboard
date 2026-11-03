@@ -33,8 +33,8 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #1ca894;
-  box-shadow: 0 0 0 3px rgba(28, 168, 148, 0.12);
+  background: var(--status-ok-dot);
+  box-shadow: 0 0 0 3px var(--status-ok-glow);
 }
 
 /* حذف فاصله‌های پیش‌فرض */

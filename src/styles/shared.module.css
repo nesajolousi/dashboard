@@ -15,8 +15,8 @@
   place-items: center;
   width: 32px;
   height: 32px;
-  color: #fff;
-  background: #d8a566;
+  color: var(--on-accent);
+  background: var(--avatar-bg);
   border-radius: 9px;
   font-size: 12px;
   font-weight: 700;

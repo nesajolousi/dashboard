@@ -3,7 +3,7 @@ import { Footer } from '../../../components/layout/Footer'
 import { Icon } from '../../../components/ui/Icon'
 import { PanelHeading } from '../../../components/ui/PanelHeading'
 import { navigationLabels } from '../../../config/navigation'
-import { useChartPalette } from '../../../shared/charts/chartTheme'
+import { chartColors } from '../../../shared/charts/chartTheme'
 import { HorizontalBarChart } from '../../../shared/charts/HorizontalBarChart'
 import { formatPersianNumber } from '../../../shared/lib/number'
 import sharedStyles from '../../../styles/shared.module.css'
@@ -38,7 +38,6 @@ export function FeedBalancePage() {
   const [dateRange, setDateRange] = useState(getInitialDateRange)
   const [sortKey, setSortKey] = useState<SortKey>('delivered')
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc')
-  const palette = useChartPalette()
   const state = useRefiningProduction(dateRange)
   const rows = selectFeedBalance(state.data.cards)
   const summary = selectFeedBalanceSummary(rows)
@@ -147,13 +146,13 @@ export function FeedBalancePage() {
               {
                 id: 'delivered',
                 label: 'تحویل خوراک',
-                color: palette.teal,
+                color: chartColors.teal,
                 data: sortedRows.map((row) => row.delivered),
               },
               {
                 id: 'consumed',
                 label: 'مصرف خوراک',
-                color: palette.blue,
+                color: chartColors.blue,
                 data: sortedRows.map((row) => row.consumed),
               },
             ]}

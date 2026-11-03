@@ -4,8 +4,8 @@ import { PanelHeading } from '../../../components/ui/PanelHeading'
 import {
   chartSx,
   formatChartNumber,
-  useChartPalette,
-  type ChartPalette,
+  chartColors,
+  type ChartColor,
 } from '../../../shared/charts/chartTheme'
 import sharedStyles from '../../../styles/shared.module.css'
 import panelHeadingStyles from '../../../components/ui/PanelHeading.module.css'
@@ -13,8 +13,8 @@ import { productMix } from '../dashboard.data'
 import type { ProductMixItem } from '../dashboard.types'
 import styles from './ProductMix.module.css'
 
-// رنگ هر محصول از پالت تم فعلی خوانده می‌شود
-const toneByProduct: Record<ProductMixItem['key'], keyof ChartPalette> = {
+// رنگ هر محصول از متغیرهای رنگ نمودار (src/styles/colors.css) خوانده می‌شود
+const toneByProduct: Record<ProductMixItem['key'], ChartColor> = {
   petrol: 'teal',
   diesel: 'blue',
   kerosene: 'gold',
@@ -22,10 +22,9 @@ const toneByProduct: Record<ProductMixItem['key'], keyof ChartPalette> = {
 }
 
 export function ProductMix() {
-  const palette = useChartPalette()
   const items = productMix.items.map((item) => ({
     ...item,
-    color: palette[toneByProduct[item.key]],
+    color: chartColors[toneByProduct[item.key]],
   }))
 
   return (

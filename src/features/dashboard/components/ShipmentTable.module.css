@@ -114,19 +114,19 @@
 }
 
 .shipment-status.loading {
-  color: #c98b30;
+  color: var(--status-loading-text);
 }
 
 .shipment-status.loading i {
-  background: #e0a343;
+  background: var(--status-loading-dot);
 }
 
 .shipment-status.sent {
-  color: #159689;
+  color: var(--status-ok-text);
 }
 
 .shipment-status.sent i {
-  background: #20a38e;
+  background: var(--status-sent-dot);
 }
 
 .shipment-status.waiting {
@@ -134,7 +134,7 @@
 }
 
 .shipment-status.waiting i {
-  background: #b3c0ca;
+  background: var(--status-waiting-dot);
 }
 
 /* نوار پیشرفت محموله */

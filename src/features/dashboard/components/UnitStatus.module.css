@@ -120,17 +120,17 @@
 .table-progress i {
   display: block;
   height: 100%;
-  background: #2aa99a;
+  background: var(--bar-teal);
   border-radius: inherit;
 }
 
 /* رنگ متفاوت هر ردیف */
 .unit-row:nth-child(2) .progress-track i {
-  background: #467bd5;
+  background: var(--bar-blue);
 }
 
 .unit-row:nth-child(3) .progress-track i {
-  background: #db9b3e;
+  background: var(--bar-gold);
 }
 
 /* نشان وضعیت عملیاتی */
@@ -151,19 +151,19 @@
 }
 
 .live-status.online {
-  color: #159689;
+  color: var(--status-ok-text);
 }
 
 .live-status.online i {
-  background: #1ca894;
+  background: var(--status-ok-dot);
 }
 
 .live-status.warning {
-  color: #c78a32;
+  color: var(--status-warn-text);
 }
 
 .live-status.warning i {
-  background: #e0a142;
+  background: var(--status-warn-dot);
 }
 
 /* صفحه‌های باریک */

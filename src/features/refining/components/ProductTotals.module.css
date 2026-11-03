@@ -99,8 +99,8 @@
 }
 
 .purple {
-  --accent: #7b65c2;
-  --tint: #f0edff;
+  --accent: var(--purple);
+  --tint: var(--purple-soft);
 }
 
 .icon {

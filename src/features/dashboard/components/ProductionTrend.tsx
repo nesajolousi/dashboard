@@ -5,7 +5,7 @@ import { PanelHeading } from '../../../components/ui/PanelHeading'
 import {
   chartSx,
   formatChartNumber,
-  useChartPalette,
+  chartColors,
 } from '../../../shared/charts/chartTheme'
 import sharedStyles from '../../../styles/shared.module.css'
 import panelHeadingStyles from '../../../components/ui/PanelHeading.module.css'
@@ -16,7 +16,6 @@ const sum = (values: number[]) => values.reduce((total, value) => total + value,
 
 export function ProductionTrend() {
   const { productionRange, toggleProductionRange } = useAppContext()
-  const palette = useChartPalette()
   const { labels, actual, plan, unit } = productionTrend
 
   // درصد اختلاف مجموع تولید واقعی با برنامه
@@ -104,7 +103,7 @@ export function ProductionTrend() {
               id: 'plan',
               label: 'برنامه تولید',
               data: plan,
-              color: palette.plan,
+              color: chartColors.plan,
               curve: 'monotoneX',
               showMark: false,
               valueFormatter: formatValue,
@@ -113,7 +112,7 @@ export function ProductionTrend() {
               id: 'actual',
               label: 'تولید واقعی',
               data: actual,
-              color: palette.teal,
+              color: chartColors.teal,
               curve: 'monotoneX',
               area: true,
               valueFormatter: formatValue,

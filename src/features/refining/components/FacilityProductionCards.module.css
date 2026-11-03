@@ -124,7 +124,7 @@
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--navy-2);
-  color: #12d1ec;
+  color: var(--cyan);
 }
 
 .feed {
@@ -250,7 +250,7 @@
 }
 
 .purple strong {
-  color: #9d80ff;
+  color: var(--violet);
 }
 
 .note {

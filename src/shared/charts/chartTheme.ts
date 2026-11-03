@@ -1,38 +1,16 @@
-import { useAppContext } from '../../context/AppContext'
+// رنگ نمودارها در src/styles/colors.css تعریف شده‌اند (متغیرهای --chart-*).
+// اینجا فقط به آن متغیرها اشاره می‌کنیم؛ چون رنگ‌ها CSS variable هستند، با عوض‌شدن تم
+// (روشن/تاریک) خودکار تغییر می‌کنند و نیازی به هوک یا محاسبه در جاوااسکریپت نیست.
+export const chartColors = {
+  teal: 'var(--chart-teal)',
+  blue: 'var(--chart-blue)',
+  gold: 'var(--chart-gold)',
+  coral: 'var(--chart-coral)',
+  plan: 'var(--chart-plan)',
+  neutral: 'var(--chart-neutral)',
+} as const
 
-// پالت رنگ نمودارها. کتابخانه نمودار رنگ‌ها را به‌صورت مقدار مستقیم می‌گیرد،
-// بنابراین برای هر تم (روشن و تاریک) یک پالت جداگانه نگه می‌داریم.
-export type ChartPalette = {
-  teal: string
-  blue: string
-  gold: string
-  coral: string
-  plan: string
-  neutral: string
-}
-
-const lightPalette: ChartPalette = {
-  teal: '#199d8e',
-  blue: '#4d80dc',
-  gold: '#d8a348',
-  coral: '#db7165',
-  plan: '#bdc9d2',
-  neutral: '#dfe6ec',
-}
-
-const darkPalette: ChartPalette = {
-  teal: '#2bc0ae',
-  blue: '#6b98ec',
-  gold: '#e6b45c',
-  coral: '#ec8a7e',
-  plan: '#5b7086',
-  neutral: '#3a4d62',
-}
-
-export function useChartPalette(): ChartPalette {
-  const { theme } = useAppContext()
-  return theme === 'dark' ? darkPalette : lightPalette
-}
+export type ChartColor = keyof typeof chartColors
 
 // استایل مشترک همه نمودارها: فونت فارسی، رنگ محورها و خطوط شبکه از متغیرهای تم.
 // نمودار همیشه LTR رسم می‌شود تا محورها به‌هم نریزند؛ متن‌های فارسی خودشان درست نمایش داده می‌شوند.

@@ -37,11 +37,11 @@
 }
 
 .legend-dot.actual {
-  background: var(--teal);
+  background: var(--chart-teal);
 }
 
 .legend-dot.plan {
-  background: #bbc7d1;
+  background: var(--chart-plan);
 }
 
 /* محدوده نمودار؛ ابعاد را خود کتابخانه نمودار مدیریت می‌کند */

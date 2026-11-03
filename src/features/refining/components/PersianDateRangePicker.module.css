@@ -50,7 +50,7 @@
 .day { min-height: 31px; padding: 0; border: 0; border-radius: 7px; background: transparent; color: var(--text); font-size: 10px; }
 .day:hover { background: var(--teal-soft); color: var(--teal); }
 .day.inRange { border-radius: 0; background: var(--teal-soft); color: var(--teal); }
-.day.selected { border-radius: 7px; background: var(--teal); color: #fff; font-weight: 600; }
+.day.selected { border-radius: 7px; background: var(--teal); color: var(--on-accent); font-weight: 600; }
 
 .selectionSummary { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; padding-top: 11px; border-top: 1px solid var(--line-soft); color: var(--muted); font-size: 9px; }
 .selectionSummary span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -58,7 +58,7 @@
 .error { margin: 10px 0 0; color: var(--coral); font-size: 9px; }
 .actions { display: flex; justify-content: flex-start; gap: 8px; margin-top: 16px; }
 .actions button { border: 0; border-radius: 7px; padding: 7px 10px; background: transparent; color: var(--muted); font-size: 10px; }
-.actions .apply { background: var(--teal); color: #fff; }
+.actions .apply { background: var(--teal); color: var(--on-accent); }
 
 @media (max-width: 560px) {
   .trigger { min-width: min(265px, calc(100vw - 36px)); }
