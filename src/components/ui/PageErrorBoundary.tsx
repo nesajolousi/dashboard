@@ -9,7 +9,8 @@ type PageErrorBoundaryState = {
   failed: boolean
 }
 
-// اگر بارگذاری یا نمایش یک صفحه شکست بخورد (مثلاً قطع اینترنت هنگام دریافت فایل صفحه)،
+// اگر بارگذاری یا نمایش یک صفحه شکست بخورد (مثلاً قطع اتصال به سرور هنگام دریافت فایل صفحه،
+// یا نصب نسخه جدید برنامه روی سرور هنگامی که کاربر صفحه قدیمی را باز دارد)،
 // فقط ناحیه محتوا پیام خطا نشان می‌دهد و منو و نوار بالا سر جایشان می‌مانند.
 export class PageErrorBoundary extends Component<
   PageErrorBoundaryProps,
@@ -30,7 +31,7 @@ export class PageErrorBoundary extends Component<
 
     return (
       <div className={styles['state']} role="alert">
-        <span>نمایش این صفحه با خطا روبه‌رو شد. اتصال اینترنت را بررسی کنید.</span>
+        <span>نمایش این صفحه با خطا روبه‌رو شد. اتصال به سرور را بررسی کنید.</span>
         <button
           type="button"
           className={styles['retry']}
