@@ -36,10 +36,14 @@ const inputProducts: InputProduct[] = [
 
 // فرآورده‌های خروجی
 const outputProducts: OutputProduct[] = [
-  { key: 'gasOil', label: 'گازوئیل', tone: 'teal' },
   { key: 'gasoline', label: 'بنزین', tone: 'gold' },
+  { key: 'gasOil', label: 'گازوئیل', tone: 'teal' },
   { key: 'fuelOil', label: 'نفت کوره', tone: 'purple' },
 ]
+
+// واحد نمایش مقدارها در کارت: خوراک و تولید واحد متفاوتی دارند
+const feedUnit = 'هزار بشکه در روز'
+const productionUnit = 'میلیون متر مکعب'
 
 // قالب‌بندی مقادیر عددی
 function formatQuantity(
@@ -138,12 +142,39 @@ function FacilityCard({ card }: FacilityCardProps) {
       </header>
 
       <section
+        className={styles.products}
+        aria-label={`محصولات تولیدی ${card.name}`}
+      >
+        <div className={styles.sectionTitle}>
+          <span>محصولات تولیدی</span>
+          <small>{productionUnit}</small>
+        </div>
+
+        <div className={styles.productGrid}>
+          {outputProducts.map((product) => (
+            <div
+              className={`${styles.product} ${styles[product.tone]}`}
+              key={product.key}
+            >
+              <span>{product.label}</span>
+              <strong>
+                {formatQuantity(card[product.key])}
+              </strong>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section
         className={styles.feed}
         aria-label={`خوراک ورودی ${card.name}`}
       >
         <div className={styles.sectionTitle}>
-          <span>خوراک ورودی</span>
-          <small>هزار بشکه در روز</small>
+          <span className={styles.feedTitle}>
+            <Icon name="tank" size={15} />
+            خوراک ورودی
+          </span>
+          <small>{feedUnit}</small>
         </div>
 
         <div className={styles.feedRows}>
@@ -163,30 +194,6 @@ function FacilityCard({ card }: FacilityCardProps) {
         <div className={styles.totalRow}>
           <span>مجموع خوراک</span>
           <strong>{formatQuantity(totalFeed)}</strong>
-        </div>
-      </section>
-
-      <section
-        className={styles.products}
-        aria-label={`محصولات تولیدی ${card.name}`}
-      >
-        <div className={styles.sectionTitle}>
-          <span>محصولات تولیدی</span>
-          <small>هزار بشکه در روز</small>
-        </div>
-
-        <div className={styles.productGrid}>
-          {outputProducts.map((product) => (
-            <div
-              className={`${styles.product} ${styles[product.tone]}`}
-              key={product.key}
-            >
-              <span>{product.label}</span>
-              <strong>
-                {formatQuantity(card[product.key])}
-              </strong>
-            </div>
-          ))}
         </div>
       </section>
     </article>

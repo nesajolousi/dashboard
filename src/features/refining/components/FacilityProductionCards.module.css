@@ -127,14 +127,6 @@
   color: var(--cyan);
 }
 
-.feed {
-  margin-top: 8px;
-  padding: 8px;
-  border: 1px solid var(--line-soft);
-  border-radius: 8px;
-  background: var(--surface-muted);
-}
-
 .sectionTitle {
   display: flex;
   align-items: center;
@@ -153,9 +145,42 @@
   white-space: nowrap;
 }
 
+/* کادر خوراک عمداً پررنگ‌تر از کادر تولید است: پس‌زمینه رنگی، نوار کناری، عنوان و اعداد درشت‌تر */
+.feed {
+  margin-top: 8px;
+  padding: 10px 10px 9px;
+  border: 1px solid var(--line-soft);
+  border-inline-start: 4px solid var(--feed-accent);
+  border-radius: 8px;
+  background: var(--blue-soft);
+}
+
+.feed .sectionTitle {
+  margin-bottom: 8px;
+  color: var(--text-strong);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.feed .sectionTitle small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.feedTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.feedTitle svg {
+  flex-shrink: 0;
+  color: var(--feed-accent);
+}
+
 .feedRows {
   display: grid;
-  gap: 4px;
+  gap: 5px;
 }
 
 .feedRow,
@@ -164,30 +189,37 @@
   align-items: center;
   justify-content: space-between;
   gap: 6px;
-  color: var(--muted);
-  font-size: 10px;
   line-height: 1.7;
 }
 
-.feedRow strong,
-.totalRow strong {
+.feedRow {
+  color: var(--text);
+  font-size: 11px;
+}
+
+.feedRow strong {
   color: var(--text-strong);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
 
 .totalRow {
-  margin-top: 6px;
-  padding-top: 6px;
-  border-top: 1px dashed var(--line);
+  margin-top: 7px;
+  padding-top: 7px;
+  border-top: 1px dashed var(--feed-accent);
   color: var(--text-strong);
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .totalRow strong {
-  color: var(--teal);
+  color: var(--feed-accent);
+  font-size: 19px;
+  font-weight: 700;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .products {
@@ -299,9 +331,12 @@
     font-size: 10px;
   }
 
-  .feed,
   .products {
     padding: 8px;
+  }
+
+  .feed {
+    padding: 9px 9px 8px;
   }
 }
 
@@ -351,14 +386,28 @@
     font-size: 7px;
   }
 
-  .feedRow,
-  .totalRow {
+  .feed .sectionTitle {
+    font-size: 11px;
+  }
+
+  .feed .sectionTitle small {
     font-size: 9px;
   }
 
-  .feedRow strong,
+  .feedRow {
+    font-size: 10px;
+  }
+
+  .feedRow strong {
+    font-size: 13px;
+  }
+
+  .totalRow {
+    font-size: 11px;
+  }
+
   .totalRow strong {
-    font-size: 12px;
+    font-size: 16px;
   }
 
   .product span {
