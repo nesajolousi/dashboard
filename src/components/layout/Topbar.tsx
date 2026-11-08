@@ -3,7 +3,7 @@ import { useAppContext } from "../../context/AppContext";
 import { navigationItems } from "../../config/navigation";
 import { Icon } from "../ui/Icon";
 import sharedStyles from "../../styles/shared.module.css";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.webp";
 import styles from "./Topbar.module.css";
 
 export function Topbar() {
