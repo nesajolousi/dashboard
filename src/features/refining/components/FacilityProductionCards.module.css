@@ -253,7 +253,6 @@
   margin-top: 8px;
   padding: 9px 10px 8px;
   border: 1px solid var(--line-soft);
-  border-inline-start: 3px solid var(--feed-accent);
   border-radius: 8px;
   background: var(--surface-muted);
 }
