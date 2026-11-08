@@ -22,8 +22,14 @@ type AppContextValue = {
 const AppContext = createContext<AppContextValue | undefined>(undefined)
 
 const initialActiveNav: NavigationLabel = navigationLabels.overview
-const initialProductionRange = '\u0647\u0641\u062a \u0631\u0648\u0632 \u06af\u0630\u0634\u062a\u0647'
-const alternateProductionRange = '\u0633\u06cc \u0631\u0648\u0632 \u06af\u0630\u0634\u062a\u0647'
+// برچسب بازه‌های نمودار «روند تولید و ارسال»؛ نمودار با همین مقدارها بازه را تشخیص می‌دهد
+export const productionRanges = {
+  week: '\u0647\u0641\u062a \u0631\u0648\u0632 \u06af\u0630\u0634\u062a\u0647',
+  month: '\u0633\u06cc \u0631\u0648\u0632 \u06af\u0630\u0634\u062a\u0647',
+} as const
+
+const initialProductionRange: string = productionRanges.week
+const alternateProductionRange: string = productionRanges.month
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [activeNav, setActiveNav] = useState(initialActiveNav)

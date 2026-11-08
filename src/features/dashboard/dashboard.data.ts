@@ -6,11 +6,21 @@ import type {
 } from './dashboard.types'
 
 // داده نمونه؛ پس از آماده‌شدن API داشبورد با داده واقعی جایگزین می‌شود
-export const productionTrend: ProductionTrendData = {
+export const productionTrendWeek: ProductionTrendData = {
   unit: 'هزار بشکه',
   labels: ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه'],
   actual: [90, 101, 108, 98, 120, 128, 141],
   plan: [92, 98, 104, 100, 112, 118, 126],
+}
+
+// سی روز گذشته: برچسب هر نقطه شماره روز است (۱ تا ۳۰)
+const monthDays = Array.from({ length: 30 }, (_, index) => index)
+
+export const productionTrendMonth: ProductionTrendData = {
+  unit: 'هزار بشکه',
+  labels: monthDays.map((day) => (day + 1).toLocaleString('fa-IR')),
+  actual: monthDays.map((day) => Math.round(95 + day * 0.9 + 8 * Math.sin(day * 0.9))),
+  plan: monthDays.map((day) => Math.round(96 + day * 0.8 + 3 * Math.sin(day * 0.5))),
 }
 
 export const productMix: ProductMixData = {

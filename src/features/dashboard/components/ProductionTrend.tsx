@@ -1,5 +1,5 @@
 import { LineChart } from '@mui/x-charts/LineChart'
-import { useAppContext } from '../../../context/AppContext'
+import { productionRanges, useAppContext } from '../../../context/AppContext'
 import { Icon } from '../../../components/ui/Icon'
 import { PanelHeading } from '../../../components/ui/PanelHeading'
 import {
@@ -9,14 +9,16 @@ import {
 } from '../../../shared/charts/chartTheme'
 import sharedStyles from '../../../styles/shared.module.css'
 import panelHeadingStyles from '../../../components/ui/PanelHeading.module.css'
-import { productionTrend } from '../dashboard.data'
+import { productionTrendMonth, productionTrendWeek } from '../dashboard.data'
 import styles from './ProductionTrend.module.css'
 
 const sum = (values: number[]) => values.reduce((total, value) => total + value, 0)
 
 export function ProductionTrend() {
   const { productionRange, toggleProductionRange } = useAppContext()
-  const { labels, actual, plan, unit } = productionTrend
+  const isMonth = productionRange === productionRanges.month
+  const { labels, actual, plan, unit } = isMonth ? productionTrendMonth : productionTrendWeek
+  const periodLabel = isMonth ? 'در سی روز گذشته' : 'در این هفته'
 
   // درصد اختلاف مجموع تولید واقعی با برنامه
   const planTotal = sum(plan)
@@ -86,6 +88,8 @@ export function ProductionTrend() {
               data: labels,
               disableLine: true,
               disableTicks: true,
+              // در نمای سی‌روزه فقط هر پنج روز یک برچسب نشان داده می‌شود تا شلوغ نشود
+              tickLabelInterval: isMonth ? (_value: unknown, index: number) => index % 5 === 0 : undefined,
             },
           ]}
           yAxis={[
@@ -136,7 +140,7 @@ export function ProductionTrend() {
         </div>
 
         <p>
-          تولید واقعی در این هفته <strong>{differenceLabel} {isAhead ? 'رشد' : 'کاهش'}</strong>{' '}
+          تولید واقعی {periodLabel} <strong>{differenceLabel} {isAhead ? 'رشد' : 'کاهش'}</strong>{' '}
           داشته و از برنامه {isAhead ? 'جلوتر' : 'عقب‌تر'} است.
         </p>
 
