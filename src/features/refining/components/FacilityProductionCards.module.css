@@ -2,6 +2,11 @@
   padding: 12px 14px 9px;
 }
 
+/* دو کلاس panel (این‌جا و shared) هم‌وزن‌اند؛ دوبار نوشتن، رنگ زمینه را مستقل از ترتیب بارگذاری CSS برنده می‌کند */
+.panel.panel {
+  background: var(--card-panel-bg);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -14,10 +19,10 @@
   container-type: inline-size;
   min-width: 0;
   padding: 11px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--card-border);
   border-radius: 12px;
   background: var(--surface);
-  box-shadow: 0 3px 10px var(--shadow);
+  box-shadow: 0 4px 14px var(--card-shadow);
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease,
@@ -26,7 +31,7 @@
 
 .card:hover {
   border-color: var(--teal);
-  box-shadow: 0 6px 16px var(--shadow);
+  box-shadow: 0 8px 20px var(--card-shadow-hover);
   transform: translateY(-2px);
 }
 
