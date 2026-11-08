@@ -28,7 +28,7 @@ type OutputProduct = {
   tone: 'teal' | 'gold' | 'purple'
 }
 
-// خوراک‌های ورودی
+// خوراک‌ها
 const inputProducts: InputProduct[] = [
   { key: 'crudeOil', label: 'نفت خام' },
   { key: 'gasCondensate', label: 'میعانات گازی' },
@@ -167,12 +167,12 @@ function FacilityCard({ card }: FacilityCardProps) {
 
       <section
         className={styles.feed}
-        aria-label={`خوراک ورودی ${card.name}`}
+        aria-label={`خوراک ${card.name}`}
       >
         <div className={styles.sectionTitle}>
           <span className={styles.feedTitle}>
-            <Icon name="tank" size={15} />
-            خوراک ورودی
+            <Icon name="tank" size={14} />
+            خوراک
           </span>
           <small>{feedUnit}</small>
         </div>
