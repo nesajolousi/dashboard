@@ -78,6 +78,8 @@ export function ProductionTrend() {
       {/* نمودار روند تولید */}
       <div className={styles['chart-wrap']} role="img" aria-label="نمودار روند تولید و ارسال">
         <LineChart
+          // با عوض‌شدن بازه، نمودار از نو ساخته می‌شود تا محور و داده حتماً به‌روز شوند
+          key={isMonth ? 'month' : 'week'}
           height={160}
           margin={{ top: 10, right: 12, bottom: 4, left: 0 }}
           hideLegend
