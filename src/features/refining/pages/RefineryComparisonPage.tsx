@@ -3,7 +3,7 @@ import { Footer } from '../../../components/layout/Footer'
 import { Icon } from '../../../components/ui/Icon'
 import { PanelHeading } from '../../../components/ui/PanelHeading'
 import { navigationLabels } from '../../../config/navigation'
-import { chartColors } from '../../../shared/charts/chartTheme'
+import { categoryColorAt, chartColors } from '../../../shared/charts/chartTheme'
 import { HorizontalBarChart } from '../../../shared/charts/HorizontalBarChart'
 import { formatPersianNumber } from '../../../shared/lib/number'
 import sharedStyles from '../../../styles/shared.module.css'
@@ -160,20 +160,16 @@ export function RefineryComparisonPage() {
                   ariaLabel={`نمودار میله‌ای مقایسه ${metric.label}`}
                   categories={rows.map((row) => row.name)}
                   valueFormatter={(value) => formatComparisonValue(value, metric)}
+                  // رنگ هر پالایشگاه ثابت است و با عوض‌شدن شاخص یا ترتیب ردیف‌ها تغییر نمی‌کند
+                  categoryColors={rows.map((row) =>
+                    categoryColorAt(refineries.findIndex((refinery) => refinery.id === row.id)),
+                  )}
                   series={[
                     {
-                      id: 'best',
-                      stack: 'value',
-                      label: `${metric.preferLower ? 'کمترین' : 'بیشترین'} ${metric.label}`,
-                      color: chartColors.teal,
-                      data: rows.map((row) => (row.id === best?.id ? row.values[metricKey] : null)),
-                    },
-                    {
-                      id: 'others',
-                      stack: 'value',
+                      id: 'value',
                       label: metric.label,
                       color: chartColors.blue,
-                      data: rows.map((row) => (row.id === best?.id ? null : row.values[metricKey])),
+                      data: rows.map((row) => row.values[metricKey]),
                     },
                   ]}
                 />

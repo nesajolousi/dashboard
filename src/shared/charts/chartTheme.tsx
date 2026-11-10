@@ -10,6 +10,14 @@ export const chartColors = {
   neutral: 'var(--chart-neutral)',
 } as const
 
+// رنگ‌های اختصاصی دسته‌ها (مثلاً هر پالایشگاه)؛ مقدارها در colors.css هستند
+export const categoryColors = Array.from({ length: 10 }, (_, index) => `var(--chart-cat-${index + 1})`)
+
+/** رنگ ثابت دسته‌ی شماره index؛ بعد از ده دسته از اول تکرار می‌شود. */
+export function categoryColorAt(index: number): string {
+  return categoryColors[index % categoryColors.length]
+}
+
 export type ChartColor = keyof typeof chartColors
 
 // قالب‌بندی عدد فارسی؛ مقدار تهی با «—» نمایش داده می‌شود

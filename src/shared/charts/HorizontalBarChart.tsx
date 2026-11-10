@@ -16,6 +16,8 @@ type HorizontalBarChartProps = {
   categories: string[]
   series: HorizontalBarSeries[]
   valueFormatter: (value: number | null) => string
+  /** رنگ هر دسته هم‌ترتیب با categories؛ اگر داده شود هر میله رنگ دسته‌ی خودش را می‌گیرد */
+  categoryColors?: string[]
   ariaLabel: string
   /** عرض ستون نام‌ها در سمت چپ نمودار */
   labelWidth?: number
@@ -27,6 +29,7 @@ export function HorizontalBarChart({
   categories,
   series,
   valueFormatter,
+  categoryColors,
   ariaLabel,
   labelWidth = 150,
   rowHeight = 34,
@@ -48,6 +51,9 @@ export function HorizontalBarChart({
           {
             scaleType: 'band',
             data: categories,
+            colorMap: categoryColors
+              ? { type: 'ordinal', values: categories, colors: categoryColors }
+              : undefined,
             width: labelWidth,
             disableLine: true,
             disableTicks: true,

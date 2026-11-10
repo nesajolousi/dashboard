@@ -84,6 +84,18 @@
   --chart-plan: #bdc9d2;
   --chart-neutral: #dfe6ec;
 
+  /* رنگ اختصاصی هر پالایشگاه در نمودارهای مقایسه (به ترتیب فهرست پالایشگاه‌ها؛ بعد از ده‌تا تکرار می‌شود) */
+  --chart-cat-1: #199d8e;
+  --chart-cat-2: #4d80dc;
+  --chart-cat-3: #d8a348;
+  --chart-cat-4: #db7165;
+  --chart-cat-5: #8d77d1;
+  --chart-cat-6: #2fb0cf;
+  --chart-cat-7: #7fb05a;
+  --chart-cat-8: #cc6c9f;
+  --chart-cat-9: #8a9aab;
+  --chart-cat-10: #b8864f;
+
   /* ---------- سایدبار (در هر دو تم یکسان) ---------- */
   --sidebar-text: #eaf2f9;
   --sidebar-subtle: #7d91a6;
@@ -166,4 +178,14 @@
   --chart-coral: #ec8a7e;
   --chart-plan: #5b7086;
   --chart-neutral: #3a4d62;
+  --chart-cat-1: #2bc0ae;
+  --chart-cat-2: #6b98ec;
+  --chart-cat-3: #e6b45c;
+  --chart-cat-4: #ec8a7e;
+  --chart-cat-5: #a592e6;
+  --chart-cat-6: #55c6e0;
+  --chart-cat-7: #98c577;
+  --chart-cat-8: #de88b6;
+  --chart-cat-9: #a3b4c5;
+  --chart-cat-10: #cf9f6c;
 }
