@@ -1,0 +1,126 @@
+/* نوارهای تحویل و مصرف خوراک هر پالایشگاه؛ رنگ هر پالایشگاه از --chart-cat-N (colors.css) می‌آید */
+.list {
+  display: grid;
+  gap: 14px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(110px, 170px) minmax(0, 1fr) minmax(120px, auto);
+  align-items: center;
+  gap: 14px;
+}
+
+.name {
+  overflow: hidden;
+  color: var(--text-strong);
+  font-size: 12px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trackArea {
+  min-width: 0;
+}
+
+/* نوار کامل = خوراک تحویل‌شده (کم‌رنگ)؛ طولش نسبت به بیشترین تحویل بین پالایشگاه‌ها است */
+.track {
+  position: relative;
+  display: block;
+  height: 14px;
+  border-radius: 7px;
+  color: var(--chart-cat-1);
+}
+
+.track::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0.22;
+}
+
+/* بخش پررنگ = مصرف‌شده، به‌اندازه درصدی از نوار تحویل */
+.fill {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  border-radius: inherit;
+  background: currentColor;
+}
+
+.values {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.values strong {
+  color: var(--text-strong);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.values small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.c1 .track {
+  color: var(--chart-cat-1);
+}
+
+.c2 .track {
+  color: var(--chart-cat-2);
+}
+
+.c3 .track {
+  color: var(--chart-cat-3);
+}
+
+.c4 .track {
+  color: var(--chart-cat-4);
+}
+
+.c5 .track {
+  color: var(--chart-cat-5);
+}
+
+.c6 .track {
+  color: var(--chart-cat-6);
+}
+
+.c7 .track {
+  color: var(--chart-cat-7);
+}
+
+.c8 .track {
+  color: var(--chart-cat-8);
+}
+
+.c9 .track {
+  color: var(--chart-cat-9);
+}
+
+.c10 .track {
+  color: var(--chart-cat-10);
+}
+
+@media (max-width: 560px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 5px 10px;
+  }
+
+  .trackArea {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}

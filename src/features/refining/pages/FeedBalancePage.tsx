@@ -3,11 +3,10 @@ import { Footer } from '../../../components/layout/Footer'
 import { Icon } from '../../../components/ui/Icon'
 import { PanelHeading } from '../../../components/ui/PanelHeading'
 import { navigationLabels } from '../../../config/navigation'
-import { categoryColorAt, chartColors } from '../../../shared/charts/chartTheme'
-import { HorizontalBarChart } from '../../../shared/charts/HorizontalBarChart'
 import { formatPersianNumber } from '../../../shared/lib/number'
 import sharedStyles from '../../../styles/shared.module.css'
 import { useRefiningProduction } from '../api/useRefiningProduction'
+import { FeedBalanceBars } from '../components/FeedBalanceBars'
 import { PersianDateRangePicker } from '../components/PersianDateRangePicker'
 import { RefiningNavigation } from '../components/RefiningNavigation'
 import {
@@ -129,38 +128,17 @@ export function FeedBalancePage() {
       <section className={`${sharedStyles.panel} ${styles.chartPanel}`} aria-label="نمودار تحویل و مصرف خوراک">
         <PanelHeading
           title="تحویل و مصرف به تفکیک پالایشگاه"
-          description="مقایسه مقدار تحویل‌شده با مقدار مصرف‌شده در بازه انتخابی"
+          description="نوار کامل خوراک تحویل‌شده و بخش پررنگ داخل آن مقدار مصرف‌شده است"
         />
         {rows.length === 0 ? (
           <div className={styles.empty}>اطلاعات پالایشگاهی برای این بازه موجود نیست.</div>
         ) : (
-          <HorizontalBarChart
-            ariaLabel="نمودار میله‌ای تحویل و مصرف خوراک پالایشگاه‌ها"
-            categories={sortedRows.map((row) => row.name)}
-            // رنگ هر پالایشگاه ثابت است (از جایش در فهرست اصلی)؛ تحویل با همان رنگ ولی کم‌رنگ‌تر رسم می‌شود
-            categoryColors={sortedRows.map((row) =>
-              categoryColorAt(rows.findIndex((item) => item.id === row.id)),
-            )}
-            valueFormatter={(value) => formatFeedBalanceValue(value, 'quantity')}
-            series={[
-              {
-                id: 'delivered',
-                barLabelPrefix: 'تحویل',
-                label: 'تحویل خوراک',
-                color: chartColors.teal,
-                data: sortedRows.map((row) => row.delivered),
-              },
-              {
-                id: 'consumed',
-                barLabelPrefix: 'مصرف',
-                label: 'مصرف خوراک',
-                color: chartColors.blue,
-                data: sortedRows.map((row) => row.consumed),
-              },
-            ]}
+          <FeedBalanceBars
+            rows={sortedRows}
+            colorIndexById={new Map(rows.map((row, index) => [row.id, index]))}
           />
         )}
-        <p className={styles.note}>تحویل و مصرف روی یک محور مشترک رسم شده‌اند؛ برای دیدن مقدار دقیق، نشانگر را روی هر میله ببرید. مقدار ناموجود رسم نمی‌شود.</p>
+        <p className={styles.note}>طول نوار هر پالایشگاه نسبت به بیشترین خوراک تحویل‌شده است. مقدار ناموجود با «—» نمایش داده می‌شود.</p>
       </section>
 
       <section className={`${sharedStyles.panel} ${styles.tablePanel}`} aria-label="جدول میزان تحویل و مصرف خوراک">

@@ -10,8 +10,6 @@ export type HorizontalBarSeries = {
   data: (number | null)[]
   /** سری‌هایی که stack یکسان دارند روی هم قرار می‌گیرند */
   stack?: string
-  /** اگر داده شود، کنار هر میله این متن (مثلاً «تحویل») و مقدارش به‌صورت کم‌رنگ نوشته می‌شود */
-  barLabelPrefix?: string
 }
 
 type HorizontalBarChartProps = {
@@ -40,15 +38,12 @@ export function HorizontalBarChart({
   const barsPerCategory = Math.max(1, new Set(series.map((item) => item.stack ?? item.id)).size)
   const height = Math.max(160, categories.length * rowHeight * barsPerCategory + 40)
 
-  // برچسب کنار میله‌ها در حاشیه‌ی راست نمودار نوشته می‌شود؛ برای جاشدنش حاشیه بزرگ‌تر می‌شود
-  const hasBarLabels = series.some((item) => item.barLabelPrefix)
-
   return (
     <div role="img" aria-label={ariaLabel} dir="ltr">
       <BarChart
         layout="horizontal"
         height={height}
-        margin={{ top: 4, right: hasBarLabels ? 110 : 16, bottom: 4, left: 0 }}
+        margin={{ top: 4, right: 16, bottom: 4, left: 0 }}
         hideLegend
         grid={{ vertical: true }}
         borderRadius={4}
@@ -71,17 +66,7 @@ export function HorizontalBarChart({
               formatChartNumber(value, { maximumFractionDigits: 3 }),
           },
         ]}
-        series={series.map(({ barLabelPrefix, ...item }) => ({
-          ...item,
-          valueFormatter,
-          ...(barLabelPrefix
-            ? {
-                barLabelPlacement: 'outside' as const,
-                barLabel: ({ value }: { value: number | null }) =>
-                  value === null ? '' : `${barLabelPrefix} ${valueFormatter(value)}`,
-              }
-            : {}),
-        }))}
+        series={series.map((item) => ({ ...item, valueFormatter }))}
         className={`${chartStyles.chart} ${chartStyles.categoryLabels}`}
       />
     </div>
