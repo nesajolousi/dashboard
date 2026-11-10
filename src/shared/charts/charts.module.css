@@ -40,3 +40,8 @@
   stroke-width: 1.5px;
   stroke-dasharray: 4 4;
 }
+
+/* سری «تحویل» با همان رنگ دسته ولی کم‌رنگ‌تر رسم می‌شود (مصرف رنگ کامل دارد) */
+.chart [data-series='delivered'] {
+  fill-opacity: 0.45;
+}

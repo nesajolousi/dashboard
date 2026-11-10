@@ -3,7 +3,7 @@ import { Footer } from '../../../components/layout/Footer'
 import { Icon } from '../../../components/ui/Icon'
 import { PanelHeading } from '../../../components/ui/PanelHeading'
 import { navigationLabels } from '../../../config/navigation'
-import { chartColors } from '../../../shared/charts/chartTheme'
+import { categoryColorAt, chartColors } from '../../../shared/charts/chartTheme'
 import { HorizontalBarChart } from '../../../shared/charts/HorizontalBarChart'
 import { formatPersianNumber } from '../../../shared/lib/number'
 import sharedStyles from '../../../styles/shared.module.css'
@@ -141,6 +141,10 @@ export function FeedBalancePage() {
           <HorizontalBarChart
             ariaLabel="نمودار میله‌ای تحویل و مصرف خوراک پالایشگاه‌ها"
             categories={sortedRows.map((row) => row.name)}
+            // رنگ هر پالایشگاه ثابت است (از جایش در فهرست اصلی)؛ تحویل با همان رنگ ولی کم‌رنگ‌تر رسم می‌شود
+            categoryColors={sortedRows.map((row) =>
+              categoryColorAt(rows.findIndex((item) => item.id === row.id)),
+            )}
             valueFormatter={(value) => formatFeedBalanceValue(value, 'quantity')}
             series={[
               {
