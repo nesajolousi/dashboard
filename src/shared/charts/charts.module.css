@@ -11,9 +11,16 @@
   font-family: 'Vazirmatn', Tahoma, sans-serif;
 }
 
-.chart :global(.MuiChartsAxis-tickLabel) {
-  fill: var(--muted-2);
+.chart :global(.MuiChartsAxis-tickLabel),
+.chart :global(.MuiChartsAxis-tickLabel) tspan {
+  fill: var(--muted-2) !important;
   font-size: 11px;
+}
+
+/* نام دسته‌ها (مثل نام پالایشگاه‌ها در نمودار میله‌ای) پررنگ‌تر از اعداد محور است تا در تم تاریک هم خوانا باشد */
+.categoryLabels :global(.MuiChartsAxis-directionY .MuiChartsAxis-tickLabel),
+.categoryLabels :global(.MuiChartsAxis-directionY .MuiChartsAxis-tickLabel) tspan {
+  fill: var(--text) !important;
 }
 
 .chart :global(.MuiChartsAxis-line),

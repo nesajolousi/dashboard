@@ -61,7 +61,7 @@ export function HorizontalBarChart({
           },
         ]}
         series={series.map((item) => ({ ...item, valueFormatter }))}
-        className={chartStyles.chart}
+        className={`${chartStyles.chart} ${chartStyles.categoryLabels}`}
       />
     </div>
   )
