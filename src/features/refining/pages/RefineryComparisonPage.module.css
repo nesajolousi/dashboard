@@ -167,12 +167,17 @@
 .summary {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 12px;
 }
 
 .summaryCard {
   position: relative;
-  padding: 20px;
+  /* آیکون کنار متن‌ها می‌نشیند تا کارت کم‌ارتفاع شود */
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 11px;
+  align-items: center;
+  padding: 11px 14px;
   border: 1px solid var(--line);
   border-radius: 11px;
   background: var(--surface);
@@ -186,10 +191,10 @@
 .summaryIcon {
   display: grid;
   place-items: center;
-  width: 38px;
-  height: 38px;
-  margin-bottom: 13px;
-  border-radius: 9px;
+  grid-row: 1 / span 3;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
   background: var(--teal-soft);
   color: var(--teal);
 }
@@ -207,14 +212,14 @@
 .summaryCard>span {
   display: block;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 10px;
 }
 
 .summaryCard>strong {
   display: block;
-  margin-block: 10px 7px;
+  margin-block: 2px;
   color: var(--text-strong);
-  font-size: 25px;
+  font-size: 18px;
   font-variant-numeric: tabular-nums;
 }
 
@@ -227,8 +232,8 @@
 .summaryCard p {
   margin: 0;
   color: var(--muted);
-  font-size: 10px;
-  line-height: 1.8;
+  font-size: 9px;
+  line-height: 1.6;
 }
 
 /* -----------------------------
@@ -487,11 +492,11 @@
 
   .summary {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 10px;
   }
 
   .summaryCard {
-    padding: 16px;
+    padding: 10px 12px;
   }
 
 }
