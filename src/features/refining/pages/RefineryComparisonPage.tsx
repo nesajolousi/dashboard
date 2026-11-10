@@ -183,7 +183,7 @@ export function RefineryComparisonPage() {
 
             <section className={`${sharedStyles.panel} ${styles.tablePanel}`} aria-label="جدول مقایسه پالایشگاه‌ها">
               <PanelHeading title="جزئیات مقایسه پالایشگاه‌ها" description="همه شاخص‌ها کنار هم؛ ترتیب ردیف‌ها بر اساس شاخص انتخاب‌شده است." />
-              <div className={styles.tableScroll} tabIndex={0} role="region" aria-label="جدول شاخص‌ها؛ قابل پیمایش افقی">
+              <div className={styles.tableWrap}>
                 <table className={styles.table}>
                   <caption>مقایسه پالایشگاه‌های انتخاب‌شده؛ مقادیر تولید و خوراک بر حسب واحد گزارش سرویس و نرخ‌ها بر حسب درصد</caption>
                   <thead>
@@ -202,7 +202,7 @@ export function RefineryComparisonPage() {
                       <tr key={row.id}>
                         <th scope="row">{row.name}</th>
                         {comparisonMetrics.map((item) => (
-                          <td key={item.key} className={item.key === metricKey ? styles.activeColumn : ''}>
+                          <td key={item.key} data-label={item.label} className={item.key === metricKey ? styles.activeColumn : ''}>
                             {formatComparisonValue(row.values[item.key], item)}
                           </td>
                         ))}

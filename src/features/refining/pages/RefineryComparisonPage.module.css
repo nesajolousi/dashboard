@@ -254,19 +254,23 @@
    جدول جزئیات مقایسه
 ----------------------------- */
 
-.tableScroll {
+.tablePanel {
+  container-type: inline-size;
+}
+
+/* جدول بدون اسکرول: ستون‌ها تمام عرض را می‌گیرند و متن‌ها در صورت نیاز به خط بعد می‌روند */
+.tableWrap {
   margin-top: 19px;
-  overflow-x: auto;
   border: 1px solid var(--line);
   border-radius: 9px;
 }
 
 .table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   font-size: 11px;
   text-align: start;
-  white-space: nowrap;
 }
 
 .table caption {
@@ -279,7 +283,8 @@
 
 .table th,
 .table td {
-  padding: 14px 16px;
+  padding: 12px 8px;
+  overflow-wrap: anywhere;
   border-bottom: 1px solid var(--line-soft);
   text-align: start;
 }
@@ -300,9 +305,6 @@
 }
 
 .table tbody th {
-  position: sticky;
-  inset-inline-start: 0;
-  z-index: 1;
   background: var(--surface);
   color: var(--text-strong);
   font-weight: 500;
@@ -333,6 +335,53 @@
 /* حفظ رنگ ستون انتخاب‌شده هنگام هاور */
 .table tbody tr:hover>.activeColumn {
   background: var(--teal-soft);
+}
+
+/* جدول در پنل باریک: هر پالایشگاه یک بلوک می‌شود و هر شاخص در یک خط (برچسب و مقدار) نمایش داده می‌شود */
+@container (max-width: 760px) {
+  .table,
+  .table tbody,
+  .table tr,
+  .table th,
+  .table td {
+    display: block;
+  }
+
+  .table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .table tbody tr {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .table tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  .table tbody th {
+    padding: 12px 14px;
+    background: var(--surface-muted);
+    font-weight: 700;
+  }
+
+  .table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 14px;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 10px;
+  }
 }
 
 /* -----------------------------
@@ -389,7 +438,7 @@
 .metricControl select:focus-visible,
 .sortButton:focus-visible,
 .empty button:focus-visible,
-.tableScroll:focus-visible {
+.tableWrap:focus-visible {
   outline: 2px solid var(--teal);
   outline-offset: 2px;
 }

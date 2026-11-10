@@ -21,6 +21,8 @@
 .categoryLabels :global(.MuiChartsAxis-directionY .MuiChartsAxis-tickLabel),
 .categoryLabels :global(.MuiChartsAxis-directionY .MuiChartsAxis-tickLabel) tspan {
   fill: var(--text) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
 }
 
 .chart :global(.MuiChartsAxis-line),
