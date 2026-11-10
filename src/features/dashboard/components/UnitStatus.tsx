@@ -3,6 +3,7 @@ import type { IconName } from '../../../components/ui/Icon'
 import { PanelHeading } from '../../../components/ui/PanelHeading'
 import sharedStyles from '../../../styles/shared.module.css'
 import panelHeadingStyles from '../../../components/ui/PanelHeading.module.css'
+import { progressWidthClass } from '../../../shared/lib/progress'
 import styles from './UnitStatus.module.css'
 
 // نوع اطلاعات هر واحد پالایشگاهی یا انبار نفت
@@ -105,11 +106,7 @@ export function UnitStatus() {
                 </div>
 
                 <div className={styles['progress-track']}>
-                  <i
-                    style={{
-                      width: `${unit.progress}%`,
-                    }}
-                  />
+                  <i className={progressWidthClass(unit.progress)} />
                 </div>
               </div>
 

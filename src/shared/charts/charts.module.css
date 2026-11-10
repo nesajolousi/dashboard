@@ -1,0 +1,33 @@
+/*
+  استایل مشترک همه نمودارها (قبلاً در chartTheme به‌صورت sx بود).
+  فونت فارسی، رنگ محورها و خطوط شبکه از متغیرهای تم (src/styles/colors.css) خوانده می‌شود.
+  نمودار همیشه LTR رسم می‌شود تا محورها به‌هم نریزند؛ متن‌های فارسی خودشان درست نمایش داده می‌شوند.
+*/
+.chart {
+  direction: ltr;
+}
+
+.chart text {
+  font-family: 'Vazirmatn', Tahoma, sans-serif;
+}
+
+.chart :global(.MuiChartsAxis-tickLabel) {
+  fill: var(--muted-2);
+  font-size: 11px;
+}
+
+.chart :global(.MuiChartsAxis-line),
+.chart :global(.MuiChartsAxis-tick) {
+  stroke: var(--line);
+}
+
+.chart :global(.MuiChartsGrid-line) {
+  stroke: var(--line-soft);
+  stroke-dasharray: 3 5;
+}
+
+/* خط برنامه تولید خط‌چین است (از نسخه ۹ انتخاب سری با data-series انجام می‌شود) */
+.chart path[data-series='plan'] {
+  stroke-width: 1.5px;
+  stroke-dasharray: 4 4;
+}

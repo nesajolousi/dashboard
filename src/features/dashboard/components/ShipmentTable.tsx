@@ -3,6 +3,7 @@ import { PanelHeading } from '../../../components/ui/PanelHeading'
 import type { Shipment } from '../dashboard.types'
 import sharedStyles from '../../../styles/shared.module.css'
 import panelHeadingStyles from '../../../components/ui/PanelHeading.module.css'
+import { progressWidthClass } from '../../../shared/lib/progress'
 import styles from './ShipmentTable.module.css'
 
 // نوع اطلاعات ورودی جدول
@@ -81,11 +82,7 @@ export function ShipmentTable({ rows }: ShipmentTableProps) {
                     <span>{shipment.progress}٪</span>
 
                     <div>
-                      <i
-                        style={{
-                          width: `${shipment.progress}%`,
-                        }}
-                      />
+                      <i className={progressWidthClass(shipment.progress)} />
                     </div>
                   </div>
                 </td>

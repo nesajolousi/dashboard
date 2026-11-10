@@ -81,3 +81,20 @@
   flex-shrink: 0;
   border-radius: 3px;
 }
+
+/* رنگ مربع راهنما با رنگ همان محصول در نمودار یکی است */
+.petrol {
+  background: var(--chart-teal);
+}
+
+.diesel {
+  background: var(--chart-blue);
+}
+
+.kerosene {
+  background: var(--chart-gold);
+}
+
+.other {
+  background: var(--chart-neutral);
+}

@@ -2,11 +2,11 @@ import { PieChart } from '@mui/x-charts/PieChart'
 import { Icon } from '../../../components/ui/Icon'
 import { PanelHeading } from '../../../components/ui/PanelHeading'
 import {
-  chartSx,
   formatChartNumber,
   chartColors,
   type ChartColor,
 } from '../../../shared/charts/chartTheme'
+import chartStyles from '../../../shared/charts/charts.module.css'
 import sharedStyles from '../../../styles/shared.module.css'
 import panelHeadingStyles from '../../../components/ui/PanelHeading.module.css'
 import { productMix } from '../dashboard.data'
@@ -58,7 +58,7 @@ export function ProductMix() {
                 highlightScope: { fade: 'global', highlight: 'item' },
               },
             ]}
-            sx={chartSx}
+            className={chartStyles.chart}
           />
 
           {/* عدد وسط نمودار */}
@@ -72,10 +72,7 @@ export function ProductMix() {
       <div className={styles['distribution-legend']}>
         {items.map((item) => (
           <div key={item.key}>
-            <span
-              className={styles['legend-square']}
-              style={{ background: item.color }}
-            />
+            <span className={`${styles['legend-square']} ${styles[item.key]}`} />
             <span>{item.label}</span>
             <strong>{formatChartNumber(item.value)}٪</strong>
           </div>

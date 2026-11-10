@@ -15,6 +15,7 @@ import {
   type RefineryStatusRow,
 } from '../model/refinery-status'
 import pageStyles from './RefiningProductionPage.module.css'
+import { progressWidthClass } from '../../../shared/lib/progress'
 import styles from './RefineryStatusPage.module.css'
 
 export function RefineryStatusPage() {
@@ -118,7 +119,7 @@ function RefineryDetail({ row }: { row: RefineryStatusRow }) {
           <strong>{formatPersianRate(row.consumptionRate)}</strong>
         </div>
         <div className={styles.progressTrack} aria-label={'نسبت مصرف ' + row.name}>
-          <span className={`${styles.progress} ${styles[row.status]}`} style={{ width: `${Math.min(consumptionRate, 100)}%` }} />
+          <span className={`${styles.progress} ${styles[row.status]} ${progressWidthClass(consumptionRate)}`} />
         </div>
         <div className={styles.consumptionMeta}>
           <span>مانده خوراک: <strong>{formatQuantity(row.remaining)} هزار بشکه در روز</strong></span>

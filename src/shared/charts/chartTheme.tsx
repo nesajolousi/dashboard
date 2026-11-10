@@ -12,26 +12,6 @@ export const chartColors = {
 
 export type ChartColor = keyof typeof chartColors
 
-// استایل مشترک همه نمودارها: فونت فارسی، رنگ محورها و خطوط شبکه از متغیرهای تم.
-// نمودار همیشه LTR رسم می‌شود تا محورها به‌هم نریزند؛ متن‌های فارسی خودشان درست نمایش داده می‌شوند.
-export const chartSx = {
-  direction: 'ltr',
-  '& text': {
-    fontFamily: "'Vazirmatn', Tahoma, sans-serif",
-  },
-  '& .MuiChartsAxis-tickLabel': {
-    fill: 'var(--muted-2)',
-    fontSize: 11,
-  },
-  '& .MuiChartsAxis-line, & .MuiChartsAxis-tick': {
-    stroke: 'var(--line)',
-  },
-  '& .MuiChartsGrid-line': {
-    stroke: 'var(--line-soft)',
-    strokeDasharray: '3 5',
-  },
-}
-
 // قالب‌بندی عدد فارسی؛ مقدار تهی با «—» نمایش داده می‌شود
 export function formatChartNumber(
   value: number | null | undefined,

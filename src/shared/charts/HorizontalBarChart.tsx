@@ -1,5 +1,6 @@
 import { BarChart } from '@mui/x-charts/BarChart'
-import { chartSx, formatChartNumber } from './chartTheme'
+import { formatChartNumber } from './chartTheme'
+import chartStyles from './charts.module.css'
 
 export type HorizontalBarSeries = {
   id: string
@@ -60,7 +61,7 @@ export function HorizontalBarChart({
           },
         ]}
         series={series.map((item) => ({ ...item, valueFormatter }))}
-        sx={chartSx}
+        className={chartStyles.chart}
       />
     </div>
   )

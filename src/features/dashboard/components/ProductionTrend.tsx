@@ -3,10 +3,10 @@ import { productionRanges, useAppContext } from '../../../context/AppContext'
 import { Icon } from '../../../components/ui/Icon'
 import { PanelHeading } from '../../../components/ui/PanelHeading'
 import {
-  chartSx,
   formatChartNumber,
   chartColors,
 } from '../../../shared/charts/chartTheme'
+import chartStyles from '../../../shared/charts/charts.module.css'
 import sharedStyles from '../../../styles/shared.module.css'
 import panelHeadingStyles from '../../../components/ui/PanelHeading.module.css'
 import { productionTrendMonth, productionTrendWeek } from '../dashboard.data'
@@ -124,14 +124,7 @@ export function ProductionTrend() {
               valueFormatter: formatValue,
             },
           ]}
-          sx={{
-            ...chartSx,
-            // خط برنامه تولید خط‌چین است (از نسخه ۹ انتخاب سری با data-series انجام می‌شود)
-            'path[data-series="plan"]': {
-              strokeWidth: 1.5,
-              strokeDasharray: '4 4',
-            },
-          }}
+          className={chartStyles.chart}
         />
       </div>
 
