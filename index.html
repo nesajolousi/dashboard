@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0b1f35" />
+    <script>
+      // تم ذخیره‌شده پیش از اولین نمایش اعمال می‌شود تا صفحه اول لحظه‌ای روشن دیده نشود
+      try {
+        if (localStorage.getItem('petro-theme') === 'dark') document.documentElement.dataset.theme = 'dark'
+      } catch (e) {}
+    </script>
     <title>پترو دیدبان | داشبورد عملیات</title>
   </head>
   <body>

@@ -1,3 +1,4 @@
+import { isStorageFacility } from './facility'
 import { selectFacilityTotals } from './refining.selectors'
 import type { RefiningProductionCard } from './refining.types'
 import { selectFeedBalance, type FeedBalanceRow } from './feed-balance'
@@ -21,7 +22,7 @@ export function selectRefineryStatus(cards: RefiningProductionCard[]): RefineryS
   const rowsById = new Map(feedRows.map((row) => [row.id, row]))
 
   return cards
-    .filter((card) => !card.name.trim().startsWith('انبار'))
+    .filter((card) => !isStorageFacility(card))
     .map((card) => {
       const feed = rowsById.get(card.id)!
       const { convertRate } = selectFacilityTotals(card)

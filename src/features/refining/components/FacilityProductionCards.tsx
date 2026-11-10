@@ -5,6 +5,7 @@ import {
   formatPersianRate,
 } from '../../../shared/lib/number'
 import sharedStyles from '../../../styles/shared.module.css'
+import { isStorageFacility } from '../model/facility'
 import { selectFacilityTotals } from '../model/refining.selectors'
 import styles from './FacilityProductionCards.module.css'
 
@@ -63,9 +64,7 @@ function formatQuantity(
 export function FacilityProductionCards({
   cards,
 }: FacilityProductionCardsProps) {
-  const refineryCount = cards.filter(
-    (card) => !card.name.startsWith('انبار'),
-  ).length
+  const refineryCount = cards.filter((card) => !isStorageFacility(card)).length
 
   const storageCount = cards.length - refineryCount
 
@@ -102,7 +101,7 @@ type FacilityCardProps = {
 }
 
 function FacilityCard({ card }: FacilityCardProps) {
-  const isStorage = card.name.startsWith('انبار')
+  const isStorage = isStorageFacility(card)
 
   const {
     receivedFeed: totalFeed,

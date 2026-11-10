@@ -1,4 +1,5 @@
-import { formatPersianNumber, formatPersianRate } from '../../../shared/lib/number'
+import { formatPersianNumber, formatPersianRate, readNumber } from '../../../shared/lib/number'
+import { isStorageFacility } from './facility'
 import type { ProductKey, RefiningProductionCard } from './refining.types'
 
 export type ComparisonMetricKey = ProductKey | 'receivedFeed' | 'mainProduction' | 'convertRate' | 'fuelOilRate'
@@ -26,18 +27,6 @@ export const comparisonMetrics: ComparisonMetric[] = [
   { key: 'fuelOilRate', label: 'سهم نفت کوره از تولید', unit: 'rate', preferLower: true },
 ]
 
-function readValue(value: unknown): number | null {
-  if (value === null || value === undefined || String(value).trim() === '') return null
-
-  const normalized = String(value).trim()
-    .replace(/[۰-۹]/g, (digit) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(digit)))
-    .replace(/[٠-٩]/g, (digit) => String('٠١٢٣٤٥٦٧٨٩'.indexOf(digit)))
-    .replace(/٫/g, '.')
-    .replace(/[٬,]/g, '')
-  const parsed = Number(normalized)
-  return Number.isFinite(parsed) && parsed >= 0 ? parsed : null
-}
-
 function sumKnown(values: (number | null)[]) {
   return values.every((value) => value !== null)
     ? values.reduce<number>((total, value) => total + (value ?? 0), 0)
@@ -52,12 +41,12 @@ function rate(numerator: number | null, denominator: number | null) {
 
 export function selectRefineryComparisons(cards: RefiningProductionCard[]): RefineryComparison[] {
   // The production response identifies storage facilities by the "انبار" prefix.
-  return cards.filter((card) => !card.name.trim().startsWith('انبار')).map((card) => {
-    const gasoline = readValue(card.gasoline)
-    const gasOil = readValue(card.gasOil)
-    const fuelOil = readValue(card.fuelOil)
-    const crudeOil = readValue(card.crudeOil)
-    const gasCondensate = readValue(card.gasCondensate)
+  return cards.filter((card) => !isStorageFacility(card)).map((card) => {
+    const gasoline = readNumber(card.gasoline)
+    const gasOil = readNumber(card.gasOil)
+    const fuelOil = readNumber(card.fuelOil)
+    const crudeOil = readNumber(card.crudeOil)
+    const gasCondensate = readNumber(card.gasCondensate)
     const receivedFeed = sumKnown([crudeOil, gasCondensate])
     const mainProduction = sumKnown([gasoline, gasOil, fuelOil])
 
@@ -66,8 +55,8 @@ export function selectRefineryComparisons(cards: RefiningProductionCard[]): Refi
       name: card.name,
       values: {
         gasoline, gasOil, fuelOil, crudeOil, gasCondensate, receivedFeed, mainProduction,
-        convertRate: readValue(card.convertRate) ?? rate(mainProduction, receivedFeed),
-        fuelOilRate: readValue(card.fuelOilRate) ?? rate(fuelOil, mainProduction),
+        convertRate: readNumber(card.convertRate) ?? rate(mainProduction, receivedFeed),
+        fuelOilRate: readNumber(card.fuelOilRate) ?? rate(fuelOil, mainProduction),
       },
     }
   })

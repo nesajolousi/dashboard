@@ -62,8 +62,9 @@
 .headerMeta {
   display: flex;
   align-items: center;
-  flex-wrap: nowrap;
-  gap: 8px;
+  /* در کارت باریک، نشان‌ها به خط بعد می‌روند و روی هم نمی‌افتند */
+  flex-wrap: wrap;
+  gap: 4px 8px;
   margin-top: 5px;
   min-width: 0;
 }

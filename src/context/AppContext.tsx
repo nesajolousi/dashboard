@@ -21,6 +21,17 @@ type AppContextValue = {
 
 const AppContext = createContext<AppContextValue | undefined>(undefined)
 
+const THEME_STORAGE_KEY = 'petro-theme'
+
+// تم ذخیره‌شده را می‌خواند؛ اگر نبود یا مرورگر اجازه نداد، تم روشن
+function readStoredTheme(): Theme {
+  try {
+    return localStorage.getItem(THEME_STORAGE_KEY) === 'dark' ? 'dark' : 'light'
+  } catch {
+    return 'light'
+  }
+}
+
 const initialActiveNav: NavigationLabel = navigationLabels.overview
 // برچسب بازه‌های نمودار «روند تولید و ارسال»؛ نمودار با همین مقدارها بازه را تشخیص می‌دهد
 export const productionRanges = {
@@ -35,12 +46,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [activeNav, setActiveNav] = useState(initialActiveNav)
   const [menuOpen, setMenuOpen] = useState(false)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
-  const [theme, setTheme] = useState<Theme>('light')
+  const [theme, setTheme] = useState<Theme>(readStoredTheme)
   const [showNotifications, setShowNotifications] = useState(false)
   const [productionRange, setProductionRange] = useState(initialProductionRange)
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
+
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, theme)
+    } catch {
+      // ذخیره‌سازی مرورگر در دسترس نیست؛ تم فقط تا بستن صفحه می‌ماند
+    }
   }, [theme])
 
   const value: AppContextValue = {

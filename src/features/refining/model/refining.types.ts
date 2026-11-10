@@ -35,6 +35,8 @@ export type ProductionDateRange = {
 export type RefiningProductionCard = {
   id: number
   name: string
+  /** نوع مرکز؛ اگر سرور بفرستد همین ملاک است، وگرنه از پیشوند «انبار» در نام تشخیص داده می‌شود. */
+  facilityType?: 'refinery' | 'storage'
   gasoline: string
   gasOil: string
   fuelOil: string

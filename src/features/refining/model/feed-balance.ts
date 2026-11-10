@@ -1,4 +1,5 @@
-import { formatPersianNumber, formatPersianRate } from '../../../shared/lib/number'
+import { formatPersianNumber, formatPersianRate, readNumber } from '../../../shared/lib/number'
+import { isStorageFacility } from './facility'
 import type { RefiningProductionCard } from './refining.types'
 
 export type FeedBalanceMetric = {
@@ -25,21 +26,9 @@ export const feedBalanceMetrics: FeedBalanceMetric[] = [
   { key: 'consumptionRate', label: 'نسبت مصرف به تحویل', unit: 'rate', tone: 'coral' },
 ]
 
-function readValue(value: unknown) {
-  if (value === null || value === undefined || String(value).trim() === '') return null
-
-  const normalized = String(value)
-    .replace(/[۰-۹]/g, (digit) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(digit)))
-    .replace(/[٠-٩]/g, (digit) => String('٠١٢٣٤٥٦٧٨٩'.indexOf(digit)))
-    .replace(/٫/g, '.')
-    .replace(/[٬,]/g, '')
-  const parsed = Number(normalized)
-  return Number.isFinite(parsed) && parsed >= 0 ? parsed : null
-}
-
 function sumInputs(card: RefiningProductionCard) {
-  const crudeOil = readValue(card.crudeOil)
-  const gasCondensate = readValue(card.gasCondensate)
+  const crudeOil = readNumber(card.crudeOil)
+  const gasCondensate = readNumber(card.gasCondensate)
   return crudeOil !== null && gasCondensate !== null ? crudeOil + gasCondensate : null
 }
 
@@ -51,10 +40,10 @@ function calculateRate(consumed: number | null, delivered: number | null) {
 
 export function selectFeedBalance(cards: RefiningProductionCard[]): FeedBalanceRow[] {
   return cards
-    .filter((card) => !card.name.trim().startsWith('انبار'))
+    .filter((card) => !isStorageFacility(card))
     .map((card) => {
-      const explicitDelivered = readValue(card.feedDelivered)
-      const explicitConsumed = readValue(card.feedConsumed)
+      const explicitDelivered = readNumber(card.feedDelivered)
+      const explicitConsumed = readNumber(card.feedConsumed)
       const delivered = explicitDelivered ?? sumInputs(card)
       const consumed = explicitConsumed
       const remaining = delivered !== null && consumed !== null ? delivered - consumed : null
