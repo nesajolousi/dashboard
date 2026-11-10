@@ -131,10 +131,6 @@ export function FeedBalancePage() {
           title="تحویل و مصرف به تفکیک پالایشگاه"
           description="مقایسه مقدار تحویل‌شده با مقدار مصرف‌شده در بازه انتخابی"
         />
-        <div className={styles.legend}>
-          <span><i className={styles.deliveredLegend} /> تحویل خوراک</span>
-          <span><i className={styles.consumedLegend} /> مصرف خوراک</span>
-        </div>
         {rows.length === 0 ? (
           <div className={styles.empty}>اطلاعات پالایشگاهی برای این بازه موجود نیست.</div>
         ) : (
@@ -149,12 +145,14 @@ export function FeedBalancePage() {
             series={[
               {
                 id: 'delivered',
+                barLabelPrefix: 'تحویل',
                 label: 'تحویل خوراک',
                 color: chartColors.teal,
                 data: sortedRows.map((row) => row.delivered),
               },
               {
                 id: 'consumed',
+                barLabelPrefix: 'مصرف',
                 label: 'مصرف خوراک',
                 color: chartColors.blue,
                 data: sortedRows.map((row) => row.consumed),

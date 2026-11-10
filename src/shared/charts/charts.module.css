@@ -45,3 +45,10 @@
 .chart [data-series='delivered'] {
   fill-opacity: 0.45;
 }
+
+/* برچسب کنار میله‌ها («تحویل ۱٬۲۳۴»): کم‌رنگ و کوچک تا نمودار شلوغ نشود */
+.chart :global(.MuiBarLabel-root) {
+  fill: var(--muted) !important;
+  font-size: 10px !important;
+  opacity: 0.8;
+}
